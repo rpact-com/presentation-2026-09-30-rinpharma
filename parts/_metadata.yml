@@ -1,4 +1,4 @@
-date: "2026-03-31"
+date: "2026-09-30"
 date-format: long
 institute: "[RPACT](https://www.rpact.com)"
 bibliography: ../references.bib
@@ -21,7 +21,7 @@ format:
     mouse-wheel: false
     link-external-newwindow: true
     transition: fade
-    footer: 'crmPack Training for Merck - [Home](/index.html "crmPack Training for Merck") | [Slides](/listing.html "Overview of all slides") | [LinkedIn](https://www.linkedin.com/company/rpact) | [RPACT](https://www.rpact.com "RPACT") | [crmPack](https://crmPack.org "crmPack") | [Contact](https://www.rpact.com/contact)'
+    footer: 'crmPack Workshop at R/Pharma 2026 - [Home](/index.html "crmPack Workshop at R/Pharma 2026") | [Slides](/listing.html "Overview of all slides") | [LinkedIn](https://www.linkedin.com/company/rpact) | [RPACT](https://www.rpact.com "RPACT") | [crmPack](https://crmPack.org "crmPack") | [Contact](https://www.rpact.com/contact)'
     html-math-method:
         method: mathml
     title-slide-attributes:

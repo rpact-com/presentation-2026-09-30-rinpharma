@@ -1,10 +1,10 @@
 ---
-title: 'crmPack Training for Merck'
-description: 'Basic and advanced training for crmPack users at Merck'
+title: 'crmPack Workshop at R/Pharma 2026'
+description: 'Workshop on model-based dose escalation designs with crmPack at R/Pharma 2026'
 author:
   - "{{< var author-sabanes >}}"  
 affiliation: "RPACT"
-date: 2026-03-31
+date: 2026-09-30
 date-format: long
 institute: "[RPACT](https://www.rpact.com)"
 image: figures/logos/logo_full.png
@@ -14,22 +14,18 @@ editor:
     wrap: 120
 ---
 
-**Welcome to the crmPack Training for Merck!** 
+**Welcome to the crmPack workshop at R/Pharma 2026!**
 
-This website is accessible at
-[crmPack Training for Merck](https://merck.training.2026.crmpack.org).
+The workshop materials are available in the
+[GitHub repository](https://github.com/rpact-com/presentation-2026-09-30-rinpharma).
 
 **Details**
 
 - 🧑‍💻 Presenter: Daniel Sabanés Bové
   ([RPACT GmbH](https://www.rpact.com))
-- 📍 Location: Online 
+- 🗓 Date: 30 September 2026
 
 ## [{{< fa calendar-check >}}]{.yellow} Agenda
  
-- [Basic Training](/parts/01_basic.qmd)
-  - 🗓 Date: 2026-03-31
-  - 🕒 Time: 2:00 PM –  3:00 PM CEST (Germany)
-- [Advanced Training](/parts/02_advanced.qmd)
-  - 🗓 Date: 2026-04-21
-  - 🕒 Time: 10:30 AM – 11:30 AM CEST (Germany)
+- [Workshop slides](/parts/workshop.qmd)
+  - Model-based dose escalation design, operating characteristics, and further topics

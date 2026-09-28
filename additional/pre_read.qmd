@@ -3,13 +3,13 @@ title: "Pre-read material"
 author: "Daniel Sabanés Bové"
 ---
 
-Hello, and thank you for your interest in the `crmPack` training that I will be running on the 31st March and 21st April.
+Hello, and thank you for your interest in the `crmPack` workshop at R/Pharma on 30 September 2026.
 
-To help you get the most from the training, I would like to ask you to do a few things in preparation.
+To help you get the most from the workshop, I would like to ask you to do a few things in preparation.
 
 ## Pre-requisites
 
-The course is primarily focused on using `crmPack` to design, run and report CRM trials. Whilst I will briefly cover CRM theory - and compare CRM trials to 3 + 3 trials, it's not really *about* CRM, 3 + 3 or first-in-human trials. If you'd like an introduction or referesher, I recommend:
+The workshop is primarily focused on using `crmPack` to design, run and report CRM trials. Whilst I will briefly cover CRM theory - and compare CRM trials to 3 + 3 trials, it's not really *about* CRM, 3 + 3 or first-in-human trials. If you'd like an introduction or refresher, I recommend:
 
 Garret-Meyer E (2006) The continual reassessment method: a tutorial. Clin Trials 3: 57 - 71. doi: [10.1191/1740774506cn134oa](https://journals.sagepub.com/doi/10.1191/1740774506cn134oa).
 
@@ -17,7 +17,7 @@ As `crmPack` is an R package, you'll obviously need access to R and - preferably
 
 ## Software
 
-First, and most importantly, make sure you have the necessary software installed on your laptop or whatever platform on which you plan to follow the training.
+First, and most importantly, make sure you have the necessary software installed on your laptop or whatever platform on which you plan to follow the workshop.
 
 Check that you have the latest release version of `crmPack` installed.  You can do this by running the following code in R:
 
@@ -47,13 +47,11 @@ Go to [https://sourceforge.net/projects/mcmc-jags](https://sourceforge.net/proje
 
 ## Course materials
 
-The course materials are available at
-[merck.training.2026.crmpack.org](https://merck.training.2026.crmpack.org/).
-You can also find the materials on GitHub at
-[github.com/rpact-com/presentation-2026-03-31-merck](https://github.com/rpact-com/presentation-2026-03-31-merck)
+The workshop materials are available on GitHub at
+[github.com/rpact-com/presentation-2026-09-30-rinpharma](https://github.com/rpact-com/presentation-2026-09-30-rinpharma).
 
 ## Thank you and see you soon!
 
-Thank you for your attention.  I look forward to seeing you in the training sessions.
+Thank you for your attention. I look forward to seeing you at the workshop.
 
 If anything I've written here is unclear, or if you have questions I haven't answered, please do get in touch. 

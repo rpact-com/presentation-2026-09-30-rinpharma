@@ -12,6 +12,6 @@ listing:
   categories: false
   feed: 
     items: 3
-    title: "crmPack Training for Merck"
+    title: "crmPack Workshop at R/Pharma 2026"
     language: en
 ---

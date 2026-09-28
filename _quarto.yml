@@ -3,8 +3,7 @@ project:
   output-dir: www
 
 website:
-  title: "crmPack Training for Merck"
-  site-url: https://merck.training.2026.crmpack.org
+  title: "crmPack Workshop at R/Pharma 2026"
   favicon: favicon.ico
   search: true
   navbar:
@@ -57,6 +56,5 @@ format:
     link-external-newwindow: true
 
 editor: source
-
 
 
