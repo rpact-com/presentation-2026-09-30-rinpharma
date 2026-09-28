@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: www
+  pre-render:
+    - Rscript scripts/generate-code.R
+  resources:
+    - code/*.R
 
 website:
   title: "crmPack Workshop at R/Pharma 2026"
@@ -15,6 +19,9 @@ website:
       - href: listing.qmd
         text: Slides
         icon: "file-earmark-slides"
+      - href: code.qmd
+        text: Code
+        icon: "code-square"
     right:
       - icon: linkedin
         href: https://www.linkedin.com/company/rpact/
@@ -56,5 +63,3 @@ format:
     link-external-newwindow: true
 
 editor: source
-
-

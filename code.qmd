@@ -1,0 +1,9 @@
+---
+title: "Code"
+listing:
+  contents:
+    - "code/*.R"
+format:
+  html:
+    page-layout: full
+---

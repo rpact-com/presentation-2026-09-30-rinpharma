@@ -38,6 +38,7 @@ jobs:
             any::here,
             any::testthat,
             any::knitr,
+            any::yaml,
             any::rpact,
             any::tidyr,
             any::magrittr,

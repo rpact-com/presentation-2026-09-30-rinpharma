@@ -42,6 +42,7 @@ Part of this workshop material is based on the `crmPack` training materials deve
 ## Today's workshop
 
 - These slides are available at: TODO
+- [Download the R code used in these slides](/code/workshop.R)
 - The Posit Cloud workshop can be accessed [here](TODO)
 - Any questions please post them in the Zoom chat
 
