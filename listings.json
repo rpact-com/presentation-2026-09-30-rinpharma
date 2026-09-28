@@ -1,0 +1,12 @@
+[
+  {
+    "listing": "/listing.html",
+    "items": [
+      "/parts/workshop.html"
+    ]
+  },
+  {
+    "listing": "/code.html",
+    "items": []
+  }
+]

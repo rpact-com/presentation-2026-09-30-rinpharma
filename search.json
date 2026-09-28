@@ -1,0 +1,541 @@
+[
+  {
+    "objectID": "listing.html",
+    "href": "listing.html",
+    "title": "Slides",
+    "section": "",
+    "text": "crmPack Workshop at R/Pharma 2026\n\n\nModel-based dose escalation with crmPack\n\n\nWorkshop on model-based dose escalation designs with crmPack at R/Pharma 2026.\n\n\n\n\n\nSep 30, 2026\n\n\nDaniel Sabanés Bové (RPACT)\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "parts/workshop.html#workshop-outline",
+    "href": "parts/workshop.html#workshop-outline",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Workshop outline 📦",
+    "text": "Workshop outline 📦\n\n\n\nMotivation\nModel-based dose escalation design\nCalculating operating characteristics\nPrior construction\nTime-to-event designs\nCustom JAGS models\nOutlook"
+  },
+  {
+    "objectID": "parts/workshop.html#acknowledgements",
+    "href": "parts/workshop.html#acknowledgements",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nPart of this workshop material is based on the crmPack training materials developed by John Kirkpatrick (Roche, now at Astellas). Thanks John for sharing!"
+  },
+  {
+    "objectID": "parts/workshop.html#todays-workshop",
+    "href": "parts/workshop.html#todays-workshop",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Today’s workshop",
+    "text": "Today’s workshop\n\nThese slides are available at: TODO\nDownload the R code used in these slides here\nThe Posit Cloud workshop can be accessed here\nAny questions please post them in the Zoom chat"
+  },
+  {
+    "objectID": "parts/workshop.html#maximum-tolerated-dose-mtd",
+    "href": "parts/workshop.html#maximum-tolerated-dose-mtd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Maximum tolerated dose (MTD)",
+    "text": "Maximum tolerated dose (MTD)\n\nThe main purpose of a First-in-Human (FIH) study is usually to define the Maximum Tolerated Dose (MTD) of the IMP\nUsually, the MTD is defined in terms of the highest acceptable incidence of Dose-Limiting Toxicities (DLTs) at a given dose\nThe definition of a DLT varies with indication and may vary from the serious (life-threatening SAEs) to the innocuous (mild headache)"
+  },
+  {
+    "objectID": "parts/workshop.html#overview-of-dose-escalation-designs",
+    "href": "parts/workshop.html#overview-of-dose-escalation-designs",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Overview of dose escalation designs",
+    "text": "Overview of dose escalation designs\n\nRule-based designs: 3+3 (Lin and Shih 2015), accelerated titration, rolling 6 (Skolnik et al. 2008), etc.\nModel-based designs: Continual Reassessment Method (CRM) (O’Quigley et al. 1990), Escalation with Overdose Control (EWOC) (Neuenschwander et al. 2008), etc.\nModel-assisted designs: mTPI (Ji et al. 2010), Keyboard, Bayesian Optimal Interval (BOIN) (Liu and Yuan 2015), etc."
+  },
+  {
+    "objectID": "parts/workshop.html#design",
+    "href": "parts/workshop.html#design",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "3+3 design",
+    "text": "3+3 design\n\nFigure taken from “Principles of dose finding studies in cancer: A comparison of trial designs”"
+  },
+  {
+    "objectID": "parts/workshop.html#vs.-model-based-designs",
+    "href": "parts/workshop.html#vs.-model-based-designs",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "3+3 vs. model-based designs",
+    "text": "3+3 vs. model-based designs\n\n\n\n\n3+3\nCRM\n\n\n\n\nDefinition of a DLT\nStudy specific\nStudy specific\n\n\nThe target toxicity rate\n0.33\nAny\n\n\nThe dose grid\nStudy specific\nStudy specific\n\n\nThe cohort size\n3\nAny\n\n\nThe stopping rule(s)\n2 DLTs at same dose\nAny\n\n\nThe eligibility rule\nOne dose up\nAny\n\n\nThe escalation rule\n+1 if 0/3 or 1/6\nAny\n\n\nThe definition of the MTD\nMax dose with &lt;2 DLTs\nAny\n\n\nThe dose-toxicity model\nNone\nAny"
+  },
+  {
+    "objectID": "parts/workshop.html#higher-level-overview",
+    "href": "parts/workshop.html#higher-level-overview",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Higher-level overview",
+    "text": "Higher-level overview\n\nTable taken from “Moving Beyond 3+3: The Future of Clinical Trial Design”"
+  },
+  {
+    "objectID": "parts/workshop.html#usage-of-model-based-designs",
+    "href": "parts/workshop.html#usage-of-model-based-designs",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Usage of model-based designs",
+    "text": "Usage of model-based designs\n\nRogatko et al. (2007) reported that 98.4% of phase I cancer trials use a 3+3 design or a variant, but that only 35% of participants is such trials were treated at “optimal” doses, compared to 55% in model-based trials\nLe Tourneau et al. (2009) reported 3.3% (6 of 181) of trials used CRM during 2007–2008\nvan Brummelen et al. (2016) reported that only 6.4% (11 of 172 oncology Phase I trials) used model-based approaches from 2012 to 2014\nNonami et al. (2025) reported that from 394 clinical trials submitted to PMDA between 2013 and 2022, 195 (49.5%) used rule-based designs, 114 (28.9%) used model-based designs and 85 (21.6%) used model-assisted designs."
+  },
+  {
+    "objectID": "parts/workshop.html#crmpack-to-the-rescue",
+    "href": "parts/workshop.html#crmpack-to-the-rescue",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "crmPack to the rescue!",
+    "text": "crmPack to the rescue!\nWith crmPack we aim to make it easy for everyone to use model-based designs in their dose escalation studies. The package provides:\n\nA flexible framework to define dose escalation designs\nCalculation of operating characteristics via simulations\nVisualization and tabulation of results\nA user-friendly interface to backfill cohorts\nA growing collection of advanced design options (e.g. dual endpoint designs, time-to-event designs, etc.)"
+  },
+  {
+    "objectID": "parts/workshop.html#overview",
+    "href": "parts/workshop.html#overview",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Overview 📦",
+    "text": "Overview 📦\n\n\n\nSpecialized R package for dose escalation trials\nInitial CRAN release in 2016, publication by Sabanés Bové et al. (2019)\nHigher flexibility compared to other software, thanks to its modular design\nEasy extensibility and adoption of new designs\nProduces visual and numeric outputs for easy interpretation\nFacilitates simulations to assess the performance under various scenarios"
+  },
+  {
+    "objectID": "parts/workshop.html#large-group-of-contributors",
+    "href": "parts/workshop.html#large-group-of-contributors",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Large group of contributors 🏢",
+    "text": "Large group of contributors 🏢\n\n\n\nClara Beck (Bayer)\nOliver Boix (Bayer)\nPrerana Chandratre (Bayer)\nRobert Adams (Bayer)\nDimitris Kontos (ClinBAY/Bayer)\nJiawen Zhu (Genentech)\nZiwei Liao (Genentech)\nDaniel Sabanés Bové (Roche/RCONIS)\nJohn Kirkpatrick (Roche/Astellas)\n\n\n\nGiuseppe Palermo (Roche)\nGuanya Peng (Roche)\nDoug Kelkhoff (Roche)\nWojciech Wojciak (Roche)\nMarlene Schulte-Goebel (Merck)\nBurak Kuersad Guenhan (Merck)\nWai Yin Yeung (University of Lancaster/Roche)\nThomas Jaki (University of Lancaster/Cambridge/Regensburg)"
+  },
+  {
+    "objectID": "parts/workshop.html#flow-chart",
+    "href": "parts/workshop.html#flow-chart",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Flow chart",
+    "text": "Flow chart\n\nGeneric flow chart for model-based dose escalation design"
+  },
+  {
+    "objectID": "parts/workshop.html#package-structure-parallel-to-flow",
+    "href": "parts/workshop.html#package-structure-parallel-to-flow",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Package structure: parallel to flow",
+    "text": "Package structure: parallel to flow\n\ncrmPack package structure parallels the flow chart"
+  },
+  {
+    "objectID": "parts/workshop.html#framework-in-crmpack",
+    "href": "parts/workshop.html#framework-in-crmpack",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Framework in crmPack",
+    "text": "Framework in crmPack\n\ncrmPack package framework"
+  },
+  {
+    "objectID": "parts/workshop.html#data-object",
+    "href": "parts/workshop.html#data-object",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Data object",
+    "text": "Data object\nWe first need to decide what the possible doses could be, i.e. the so-called dose grid:\n\nlibrary(crmPack)\n\ndose_grid &lt;- c(1, 5, seq(from = 10, to = 200, by = 1))\n\nThis we use to initialize our (still empty, i.e. without patients) Data object, which will be used to store the data of our trial as it progresses:\n\nempty_data &lt;- Data(doseGrid = dose_grid)"
+  },
+  {
+    "objectID": "parts/workshop.html#adding-a-patient",
+    "href": "parts/workshop.html#adding-a-patient",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Adding a patient",
+    "text": "Adding a patient\nWe can “update” the Data object with the information of a patient treated at dose 10, who did not experience a DLT, and a patient at dose 20 with a DLT:\n\ndata &lt;- empty_data |&gt;\n    update(x = 10, y = 0) |&gt;\n    update(x = 20, y = 1)\n\nAnd plot it:\n\nplot(data)"
+  },
+  {
+    "objectID": "parts/workshop.html#model-object",
+    "href": "parts/workshop.html#model-object",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Model object",
+    "text": "Model object\nNext we need to specify the dose-toxicity model we want to use.\nOften used is this logistic model with reference dose drefd_{ref}, which assigns the following probability of DLT to a dose xx:\nℙ(Y=1|x)=eα+β⋅log(x/dref)1+eα+β⋅log(x/dref)\n\\mathbb{P}(Y = 1 | x) = \\frac{e^{\\alpha + \\beta \\cdot log(x / d_{ref})}}{1 + e^{\\alpha + \\beta \\cdot log(x / d_{ref})}} \n\nThen we also use a prior distribution for the parameters α\\alpha and β\\beta. Typically, we want β\\beta to be positive, so we can assign a bivariate normal distribution to (α,log⁡(β))(\\alpha, \\log(\\beta))."
+  },
+  {
+    "objectID": "parts/workshop.html#model-object-contd",
+    "href": "parts/workshop.html#model-object-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Model object (cont’d)",
+    "text": "Model object (cont’d)\nFor example, let’s use the following model:\n\nget_cov &lt;- function(sigma0, sigma1, rho) {\n    matrix(c(sigma0^2, rho * sigma0 * sigma1, rho * sigma0 * sigma1, sigma1^2), nrow = 2)\n}\nmodel &lt;- LogisticLogNormal(\n    mean = c(-3, 0.5),\n    cov = get_cov(sigma0 = 1, sigma1 = 2, rho = 0.5),\n    ref_dose = 20\n)"
+  },
+  {
+    "objectID": "parts/workshop.html#model-object-contd-1",
+    "href": "parts/workshop.html#model-object-contd-1",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Model object (cont’d)",
+    "text": "Model object (cont’d)\nIn Quarto/Rmarkdown, we will get the nice textual description of the model by just printing it:\n\nmodel\n\nA logistic log normal model will describe the relationship between dose and toxicity: p(Tox|d)=f(X=1|θ,d)=eα+β⋅log(d/dref)1+eα+β⋅log(d/dref) p(Tox | d) = f(X = 1 | \\theta, d) = \\frac{e^{\\alpha + \\beta \\cdot log(d/d_{ref})}}{1 + e^{\\alpha + \\beta \\cdot log(d/d_{ref})}} where dref denotes a reference dose.\nThe prior for θ is given by𝜽=[αlog(β)]∼N([−3.000.50],[1.001.001.004.00]) \\boldsymbol\\theta = \\begin{bmatrix}\\alpha \\\\ log(\\beta)\\end{bmatrix}\\sim N \\left(\\begin{bmatrix}-3.00 \\\\  0.50\\end{bmatrix} , \\begin{bmatrix} 1.00 &  1.00 \\\\ 1.00 &  4.00\\end{bmatrix} \\right) \nThe reference dose will be 20.00."
+  },
+  {
+    "objectID": "parts/workshop.html#generating-prior-and-posterior-samples",
+    "href": "parts/workshop.html#generating-prior-and-posterior-samples",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Generating prior and posterior samples",
+    "text": "Generating prior and posterior samples\nWe use MCMC, in particular Gibbs sampling implemented in JAGS, to generate (approximate) samples from the posterior distribution of the model parameters. The settings are controlled by the McmcOptions object. Note that in order to get reproducible results, we also need to set the random seed:\n\nmcmc_options &lt;- McmcOptions(\n    burnin = 1000,\n    step = 10,\n    samples = 1000,\n    rng_kind = \"Mersenne-Twister\",\n    rng_seed = 12345\n)\n\nNow we can generate the prior and posterior samples with the mcmc method:\n\nprior_samples &lt;- mcmc(model, data = empty_data, options = mcmc_options)\nposterior_samples &lt;- mcmc(model, data = data, options = mcmc_options)"
+  },
+  {
+    "objectID": "parts/workshop.html#mcmc-settings-recommendations",
+    "href": "parts/workshop.html#mcmc-settings-recommendations",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "MCMC settings recommendations",
+    "text": "MCMC settings recommendations\n\nThe default MCMC settings are:\n\nburn-in: 10,000\nstep: 2\nsamples: 10,000\n\nWe just saw that we can use lower numbers during development\nAlso the more complex the model, the longer the MCMC chain should be run\nThe most important is to check the convergence of the MCMC chain:\n\n\nnames(posterior_samples@data)\n\n[1] \"alpha0\" \"alpha1\"\n\nalpha0_samples &lt;- get(posterior_samples, \"alpha0\")\nlibrary(ggmcmc)\nggs_traceplot(alpha0_samples)\n\n\n\n\n\n\n\nggs_autocorrelation(alpha0_samples)"
+  },
+  {
+    "objectID": "parts/workshop.html#plotting-dose-toxicity-curves-prior",
+    "href": "parts/workshop.html#plotting-dose-toxicity-curves-prior",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Plotting dose-toxicity curves: Prior",
+    "text": "Plotting dose-toxicity curves: Prior\n\nplot(prior_samples, model, empty_data)"
+  },
+  {
+    "objectID": "parts/workshop.html#plotting-dose-toxicity-curves-posterior",
+    "href": "parts/workshop.html#plotting-dose-toxicity-curves-posterior",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Plotting dose-toxicity curves: Posterior",
+    "text": "Plotting dose-toxicity curves: Posterior\n\nplot(posterior_samples, model, data)"
+  },
+  {
+    "objectID": "parts/workshop.html#increments-object",
+    "href": "parts/workshop.html#increments-object",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Increments object",
+    "text": "Increments object\nWe usually need additional safety rules for our model-based dose escalation design. For example, we might restrict the maximum allowed dose increment to 100% (i.e. doubling the dose) if no DLTs have been observed, and to 50% if one DLT has been observed. This can be implemented with an Increments object:\n\nincrements &lt;- IncrementsRelativeDLT(\n    intervals = c(0, 1),\n    increments = c(1, 0.5)\n)\nincrements\n\n\nDefined by number of DLTs reported so far\n\n\n\n\n\n\n\n\nNo DLTs\n\n\n\n\nMin\nMax\nIncrement\n\n\n\n\n0\n1\n1.0\n\n\n1\nInf\n0.5"
+  },
+  {
+    "objectID": "parts/workshop.html#nextbest-object",
+    "href": "parts/workshop.html#nextbest-object",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "NextBest object",
+    "text": "NextBest object\nTogether with the regression model, the definition of how to obtain the recommendation for the dose of the next cohort, are the key components of the model-based dose escalation design.\nFor example, we can minimize the posterior expected loss while restricting the maximum overdosing (e.g. 40-100% DLTs) probability to less than 25%:\n\nnext_best &lt;- NextBestNCRMLoss(\n    target = c(0.2, 0.4), # loss: 0\n    overdose = c(0.4, 0.7), # loss: 1\n    unacceptable = c(0.7, 1), # loss: 2\n    max_overdose_prob = 0.25,\n    losses = c(1, 0, 1, 2) # underdosing has loss 1\n)\nnext_best\n\nThe dose recommended for the next cohort will be chosen in the following way:\n\nFirst, the chance that the probability of toxicity falls into each of the underdose, target , overdose and unacceptable dose ranges is calculated for element of the dose grid.\nNext, the loss associated with each dose is calculated by multiplying these probabilities by the corresponding loss coefficient and summing the result.\nThen ineligible doses, and those with a probability of being in the overdose or unaccaptable ranges that is greater than 0.25, are discarded.\nFinally, the dose level with the smallest loss is selected as the recommended dose for the next cohort.\n\nToxicity ranges and loss coefficients are given in the following table:\n\n\n\n\nRange\n\n\nLower\n\n\nUpper\n\n\nLoss Coefficient\n\n\n\n\n\n\nUnderdose\n\n\n0.0\n\n\n0.2\n\n\n1\n\n\n\n\nTarget\n\n\n0.2\n\n\n0.4\n\n\n0\n\n\n\n\nOverdose\n\n\n0.4\n\n\n0.7\n\n\n1\n\n\n\n\nUnacceptable\n\n\n0.7\n\n\n1.0\n\n\n2"
+  },
+  {
+    "objectID": "parts/workshop.html#cohortsize-object",
+    "href": "parts/workshop.html#cohortsize-object",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "CohortSize object",
+    "text": "CohortSize object\nIn the simplest case, we just always have the same constant number of patients in each cohort, e.g. 3 patients per cohort:\n\ncohort_size &lt;- CohortSizeConst(3)\n\nAs with all components, other options are available, see ?CohortSize for details."
+  },
+  {
+    "objectID": "parts/workshop.html#stopping-object",
+    "href": "parts/workshop.html#stopping-object",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Stopping object",
+    "text": "Stopping object\nTypically there are stopping rules for a dose escalation study. In the simplest case, this is just the number of patients treated, e.g. 30 patients:\n\nstop1 &lt;- StoppingMinPatients(nPatients = 30)\n\nBut we can also combine this with logical & and | operators with other stopping rules, e.g. to also stop if the target probability is high, or if the model would not recommend any dose at all because of safety concerns:\n\nstop2 &lt;- StoppingTargetProb(target = c(0.2, 0.3), prob = 0.7)\nstop3 &lt;- StoppingMissingDose()\nstopping &lt;- stop1 | stop2 | stop3\nstopping\n\nIf any of the following rules are TRUE:\n\n≥ 30 patients dosed: If 30 or more participants have been treated.\nP(0.2 ≤ prob(DLE | NBD) ≤ 0.3) ≥ 0.7: If the probability of toxicity at the next best dose is in the range [0.20, 0.30] is at least 0.70.\nStopped because of missing dose: If the dose returned by nextBest() is NA, or if the trial includes a placebo dose, the placebo dose."
+  },
+  {
+    "objectID": "parts/workshop.html#resulting-recommendation-example",
+    "href": "parts/workshop.html#resulting-recommendation-example",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Resulting recommendation example",
+    "text": "Resulting recommendation example\nSo in our data example from above, what would be the recommended dose for the next cohort?\nFirst, the maximum increment is calculated using the maxDose method:\n\nmax_dose &lt;- maxDose(increments, data)\nmax_dose\n\n[1] 30\n\n\nHere it is only 30, because we observed one DLT at dose 20, so the maximum allowed increment is 50%.\nThen the next best dose is calculated with the nextBest method:\n\nnext_best_dose &lt;- nextBest(\n    next_best,\n    doselimit = max_dose,\n    samples = posterior_samples,\n    model = model,\n    data = data\n)"
+  },
+  {
+    "objectID": "parts/workshop.html#resulting-recommendation-example-contd",
+    "href": "parts/workshop.html#resulting-recommendation-example-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Resulting recommendation example (cont’d)",
+    "text": "Resulting recommendation example (cont’d)\nThe joint plot is in the $plot_joint element of the result (target/overdose/unacceptable probabilities and expected loss for each dose):\n\nprint(next_best_dose$plot_joint)\n\n\nAnd the value is in the $value element:\n\nnext_best_dose$value\n\n[1] 20\n\n\nSo due to the high probability of overdosing at dose 30, the recommended dose for the next cohort is dose 20, which is the same as the previous cohort."
+  },
+  {
+    "objectID": "parts/workshop.html#resulting-recommendation-example-contd-1",
+    "href": "parts/workshop.html#resulting-recommendation-example-contd-1",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Resulting recommendation example (cont’d)",
+    "text": "Resulting recommendation example (cont’d)\nWe can also use the fit() method to get the posterior quantiles, and we can combine that with the loss results to get a nice table:\n\nfitted_df &lt;- fit(posterior_samples, model, data)\nloss_df &lt;- next_best_dose$probs |&gt;\n    as.data.frame() |&gt;\n    dplyr::select(dose, posterior_loss)\nresult_df &lt;- dplyr::left_join(fitted_df, loss_df, by = \"dose\")\nknitr::kable(head(result_df), digits = 3)\n\n\n\n\ndose\nmiddle\nlower\nupper\nposterior_loss\n\n\n\n\n1\n0.007\n0\n0.066\n0.999\n\n\n5\n0.014\n0\n0.090\n0.998\n\n\n10\n0.024\n0\n0.125\n0.996\n\n\n11\n0.026\n0\n0.135\n0.995\n\n\n12\n0.029\n0\n0.141\n0.991\n\n\n13\n0.033\n0\n0.154\n0.988"
+  },
+  {
+    "objectID": "parts/workshop.html#design-object",
+    "href": "parts/workshop.html#design-object",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Design object",
+    "text": "Design object\nFirst we need to put all the components of our model-based dose escalation design together in a Design object - here we also need to define a starting dose:\n\ndesign &lt;- Design(\n    data = empty_data,\n    model = model,\n    nextBest = next_best,\n    increments = increments,\n    cohort_size = cohort_size,\n    stopping = stopping,\n    startingDose = 5\n)\ndesign\n\nDesign\nDose toxicity model\nA logistic log normal model will describe the relationship between dose and toxicity: p(Tox|d)=f(X=1|θ,d)=eα+β⋅log(d/dref)1+eα+β⋅log(d/dref) p(Tox | d) = f(X = 1 | \\theta, d) = \\frac{e^{\\alpha + \\beta \\cdot log(d/d_{ref})}}{1 + e^{\\alpha + \\beta \\cdot log(d/d_{ref})}} where dref denotes a reference dose.\nThe prior for θ is given by𝜽=[αlog(β)]∼N([−3.000.50],[1.001.001.004.00]) \\boldsymbol\\theta = \\begin{bmatrix}\\alpha \\\\ log(\\beta)\\end{bmatrix}\\sim N \\left(\\begin{bmatrix}-3.00 \\\\  0.50\\end{bmatrix} , \\begin{bmatrix} 1.00 &  1.00 \\\\ 1.00 &  4.00\\end{bmatrix} \\right) \nThe reference dose will be 20.00.\nStopping rule\nIf any of the following rules are TRUE:\n\n≥ 30 patients dosed: If 30 or more participants have been treated.\nP(0.2 ≤ prob(DLE | NBD) ≤ 0.3) ≥ 0.7: If the probability of toxicity at the next best dose is in the range [0.20, 0.30] is at least 0.70.\nStopped because of missing dose: If the dose returned by nextBest() is NA, or if the trial includes a placebo dose, the placebo dose.\n\nEscalation rule\n\n\nDefined by number of DLTs reported so far\n\n\n\n\n\nNo DLTs\n\n\n\n\n\n\n\nMin\n\n\nMax\n\n\nIncrement\n\n\n\n\n\n\n0\n\n\n1\n\n\n1.0\n\n\n\n\n1\n\n\nInf\n\n\n0.5\n\n\n\n\nUse of placebo\nPlacebo will not be administered in the trial.\nBackfill cohorts\nNo backfill cohorts at all will be opened.\nDose recommendation\nThe dose recommended for the next cohort will be chosen in the following way:\n\nFirst, the chance that the probability of toxicity falls into each of the underdose, target , overdose and unacceptable dose ranges is calculated for element of the dose grid.\nNext, the loss associated with each dose is calculated by multiplying these probabilities by the corresponding loss coefficient and summing the result.\nThen ineligible doses, and those with a probability of being in the overdose or unaccaptable ranges that is greater than 0.25, are discarded.\nFinally, the dose level with the smallest loss is selected as the recommended dose for the next cohort.\n\nToxicity ranges and loss coefficients are given in the following table:\n\n\n\n\nRange\n\n\nLower\n\n\nUpper\n\n\nLoss Coefficient\n\n\n\n\n\n\nUnderdose\n\n\n0.0\n\n\n0.2\n\n\n1\n\n\n\n\nTarget\n\n\n0.2\n\n\n0.4\n\n\n0\n\n\n\n\nOverdose\n\n\n0.4\n\n\n0.7\n\n\n1\n\n\n\n\nUnacceptable\n\n\n0.7\n\n\n1.0\n\n\n2\n\n\n\n\nCohort size\nA constant size of 3 participants.\nObserved data\nNo participants are yet evaluable.\nThe dose grid is 1, 5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199 and 200.\nStarting dose\nThe starting dose is 5."
+  },
+  {
+    "objectID": "parts/workshop.html#examine-method",
+    "href": "parts/workshop.html#examine-method",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Examine method",
+    "text": "Examine method\nThe first “quick check” we should run on our design is how it behaves if we don’t see any DLTs at all - can we even reach the higher doses? This can be done with the examine method:\n\nexamine(design)\n\n   dose DLTs nextDose  stop increment\n1     5    0       10 FALSE       100\n2     5    1        5 FALSE         0\n3     5    2        5 FALSE         0\n4     5    3        5 FALSE         0\n5    10    0       20 FALSE       100\n6    10    1       15 FALSE        50\n7    10    2       15 FALSE        50\n8    10    3       15 FALSE        50\n9    20    0       21 FALSE         5\n10   20    1       20 FALSE         0\n11   20    2       20 FALSE         0\n12   20    3       19 FALSE        -5\n13   21    0       22 FALSE         5\n14   21    1       21 FALSE         0\n15   21    2       20 FALSE        -5\n16   21    3       20 FALSE        -5\n17   22    0       24 FALSE         9\n18   22    1       22 FALSE         0\n19   22    2       21 FALSE        -5\n20   22    3       20 FALSE        -9\n21   24    0       31 FALSE        29\n22   24    1       24 FALSE         0\n23   24    2       23 FALSE        -4\n24   24    3       22 FALSE        -8\n25   31    0       39 FALSE        26\n26   31    1       30 FALSE        -3\n27   31    2       27 FALSE       -13\n28   31    3       24 FALSE       -23\n29   39    0       71 FALSE        82\n30   39    1       41 FALSE         5\n31   39    2       34 FALSE       -13\n32   39    3       30 FALSE       -23\n33   71    0      141 FALSE        99\n34   71    1       71 FALSE         0\n35   71    2       49 FALSE       -31\n36   71    3       39 FALSE       -45\n37  141    0      188  TRUE        33\n38  141    1      196  TRUE        39\n39  141    2       89  TRUE       -37\n40  141    3       64  TRUE       -55\n\n\nHere it could be also concerning that if we observe 3 DLTs at the starting dose of 5, we still continue with the same dose 5 for the next cohort. The reason here is that the prior is “too confident” that at low doses we have a low DLT probability."
+  },
+  {
+    "objectID": "parts/workshop.html#adjusted-performance",
+    "href": "parts/workshop.html#adjusted-performance",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Adjusted performance",
+    "text": "Adjusted performance\nSo we need to adjust the prior to be less confident, e.g. by changing the means and the standard deviations of the parameters, changing the reference dose, and checking the plot:\n\nmodel_adjusted &lt;- LogisticLogNormal(\n    mean = c(-3, -1),\n    cov = get_cov(sigma0 = 4, sigma1 = 1, rho = 0),\n    ref_dose = 100\n)\nprior_samples_adjusted &lt;- mcmc(model_adjusted, data = empty_data, options = mcmc_options)\nplot(prior_samples_adjusted, model_adjusted, empty_data)\n\ndesign_adjusted &lt;- design\ndesign_adjusted@model &lt;- model_adjusted\nexamine(design_adjusted)\n\n   dose DLTs nextDose  stop increment\n1     5    0       10 FALSE       100\n2     5    1        1 FALSE       -80\n3     5    2       NA  TRUE        NA\n4     5    3       NA  TRUE        NA\n5    10    0       20 FALSE       100\n6    10    1       15 FALSE        50\n7    10    2        5 FALSE       -50\n8    10    3       NA  TRUE        NA\n9    20    0       39 FALSE        95\n10   20    1       30 FALSE        50\n11   20    2       17 FALSE       -15\n12   20    3       10 FALSE       -50\n13   39    0       78 FALSE       100\n14   39    1       54 FALSE        38\n15   39    2       30 FALSE       -23\n16   39    3       23 FALSE       -41\n17   78    0      146 FALSE        87\n18   78    1       96 FALSE        23\n19   78    2       62 FALSE       -21\n20   78    3       42 FALSE       -46\n21  146    0      198 FALSE        36\n22  146    1      162 FALSE        11\n23  146    2      110 FALSE       -25\n24  146    3       89 FALSE       -39\n25  198    0      199 FALSE         1\n26  198    1      200 FALSE         1\n27  198    2      183 FALSE        -8\n28  198    3      144 FALSE       -27\n29  199    0      191 FALSE        -4\n30  199    1      200 FALSE         1\n31  199    2      199 FALSE         0\n32  199    3      181 FALSE        -9\n33  191    0      199 FALSE         4\n34  191    1      200 FALSE         5\n35  191    2      200 FALSE         5\n36  191    3      200 FALSE         5\n37  199    0      198  TRUE        -1\n38  199    1      200  TRUE         1\n39  199    2      200  TRUE         1\n40  199    3      200  TRUE         1"
+  },
+  {
+    "objectID": "parts/workshop.html#toxicity-scenarios",
+    "href": "parts/workshop.html#toxicity-scenarios",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Toxicity scenarios",
+    "text": "Toxicity scenarios\nIn order to evaluate the operating characteristics of our design, we need to define some toxicity scenarios, i.e. the true dose-toxicity relationship in the population. This needs to be a function mapping a dose vector to a vector of DLT probabilities. This could be:\n\nLogistic curve\nProbit curve\nPower curve\nManual specification of DLT probabilities at each dose level\n\nFor example:\n\nscenario1 &lt;- function(x) {\n    plogis(-2 + 0.8 * log(x / 20))\n}"
+  },
+  {
+    "objectID": "parts/workshop.html#toxicity-scenarios-contd",
+    "href": "parts/workshop.html#toxicity-scenarios-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Toxicity scenarios (cont’d)",
+    "text": "Toxicity scenarios (cont’d)\n\ncurve(scenario1, from = 1, to = 200, ylim = c(0, 1))"
+  },
+  {
+    "objectID": "parts/workshop.html#running-simulations",
+    "href": "parts/workshop.html#running-simulations",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Running simulations",
+    "text": "Running simulations\nNow given the design and the toxicity scenario, we can run simulations with the simulate method:\n\nsims &lt;- simulate(\n    design_adjusted,\n    nsim = 100,\n    truth = scenario1,\n    mcmcOptions = mcmc_options,\n    seed = 123,\n    parallel = TRUE\n)"
+  },
+  {
+    "objectID": "parts/workshop.html#backfilling-cohorts",
+    "href": "parts/workshop.html#backfilling-cohorts",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Backfilling cohorts",
+    "text": "Backfilling cohorts\nEspecially in oncology trials, it is meanwhile common to open backfill cohorts at lower dose levels while the escalation cohorts are still ongoing at higher dose levels. Recently this was implemented in crmPack with the Backfill objects.\nFor example:\n\nbackfill_simple &lt;- Backfill(\n    cohort_size = CohortSizeConst(3),\n    max_size = 12,\n    opening = OpeningMinCohorts(min_cohorts = 1),\n    recruitment = RecruitmentUnlimited(),\n    priority = \"lowest\"\n)\nbackfill_simple\n\nCohort size: A constant size of 3 participants.\nOpening rule: If 1 or more cohorts have been treated in total.\nRecruitment: Unlimited recruitment of backfill patients is allowed.\nTotal number of backfill patients: 12 backfill patients.\nPriority of higher vs. lower dose backfill cohorts: lowest dose."
+  },
+  {
+    "objectID": "parts/workshop.html#backfilling-cohorts-contd",
+    "href": "parts/workshop.html#backfilling-cohorts-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Backfilling cohorts (cont’d)",
+    "text": "Backfilling cohorts (cont’d)\nThis can then be added in the corresponding backfill slot of the Design object:\n\ndesign_backfill &lt;- design_adjusted\ndesign_backfill@backfill &lt;- backfill_simple\n\nPlease note that the examine method does not yet take the backfilling into account, so it will still show the same results as before. To see the effect of the backfilling, we need to run simulations."
+  },
+  {
+    "objectID": "parts/workshop.html#summarizing-results",
+    "href": "parts/workshop.html#summarizing-results",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Summarizing results",
+    "text": "Summarizing results\nWe can get basic summaries of the simulation results with the summary method:\n\nsims_summary &lt;- summary(sims, truth = scenario1)\nsims_summary\n\nSummary of 100 simulations\n\nTarget toxicity interval was 20, 35 %\nTarget dose interval corresponding to this was 43.1, 112.4 \nIntervals are corresponding to 10 and 90 % quantiles\n\nNumber of patients overall : mean 30 (30, 30) \nNumber of patients treated above target tox interval : mean 2 (0, 9) \nProportions of DLTs in the trials : mean 18 % (10 %, 23 %) \nMean toxicity risks for the patients on active : mean 18 % (2 %, 24 %) \nDoses selected as MTD : mean 82.7 (1, 167.6) \nTrue toxicity at doses selected : mean 27 % (1 %, 43 %) \nProportion of trials selecting target MTD: 56 %\nDose most often selected as MTD: 1 \nObserved toxicity rate at dose most often selected: 2 %\nFitted toxicity rate at dose most often selected : mean 4 % (2 %, 7 %) \nStop reason triggered:\n ≥ 30 patients dosed :  99 %\n P(0.2 ≤ prob(DLE | NBD) ≤ 0.3) ≥ 0.7 :  0 %\n Stopped because of missing dose :  1 %"
+  },
+  {
+    "objectID": "parts/workshop.html#plotting-results",
+    "href": "parts/workshop.html#plotting-results",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Plotting results",
+    "text": "Plotting results\nAnd we can also get more detailed plots of the simulation results with the plot method:\n\nplot(sims)"
+  },
+  {
+    "objectID": "parts/workshop.html#plotting-results-contd",
+    "href": "parts/workshop.html#plotting-results-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Plotting results (cont’d)",
+    "text": "Plotting results (cont’d)\nThe summary result can also be plotted:\n\nplot(sims_summary)"
+  },
+  {
+    "objectID": "parts/workshop.html#minimally-informative-prior",
+    "href": "parts/workshop.html#minimally-informative-prior",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Minimally informative prior",
+    "text": "Minimally informative prior\n\nAs we have seen earlier, it is not trivial to construct a reasonable prior for the CRM model parameters.\nIt gets easier when we don’t directly specify priors for the model parameters, but instead specify a prior for the toxicity probabilities at the doses of interest.\nFor logistic (log-)normal models, the crmPack function Quantiles2LogisticNormal can be used to compute the model parameters that correspond to a given set of quantiles for the toxicity probabilities at the doses of interest."
+  },
+  {
+    "objectID": "parts/workshop.html#minimally-informative-prior-contd",
+    "href": "parts/workshop.html#minimally-informative-prior-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Minimally informative prior (cont’d)",
+    "text": "Minimally informative prior (cont’d)\n\nSpecifically, Neuenschwander et al. (2008) introduced the concept of a “minimally informative prior” for the CRM, which is a prior for the logistic (log-) normal model that is as vague as possible while still being consistent with the prior information we have about the toxicity probabilities at the doses of interest\nThe algorithm can be summarized as follows:\n\nFor a high dose, have a small chance (say 5%) of being below a low toxicity probability (say 20%)\nFor a low dose have a small chance (say 5%) of being above a low toxicity probability (say 10%)\nFor intermediate doses, assume prior medians are linear in log-dose on the logit scale\nThen iteratively compute the model prior parameters that come closest to satisfying these constraints"
+  },
+  {
+    "objectID": "parts/workshop.html#example-of-a-minimally-informative-prior",
+    "href": "parts/workshop.html#example-of-a-minimally-informative-prior",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example of a minimally informative prior",
+    "text": "Example of a minimally informative prior\nNote that we only use a coarse grid here to simplify the optimization problem a bit.\n\ncoarseGrid &lt;- c(25, 100, 300)\nmin_result &lt;- MinimalInformative(\n    dosegrid = coarseGrid,\n    refDose = 100,\n    logNormal = TRUE, # use a log-normal distribution for the slope parameter\n    threshmin = 0.1, # the quantile for the low dose\n    threshmax = 0.2, # the quantile for the high dose\n    seed = 432, # for reproducibility\n    control = list(max.time = 30) # limit the optimization time here\n)\n\nIt: 1, obj value (lsEnd): 0.07142670344 indTrace: 1\nIt: 351, obj value (lsEnd): 0.03540073469 indTrace: 351\nIt: 370, obj value (lsEnd): 0.01526062805 indTrace: 370\nIt: 377, obj value (lsEnd): 0.01507283033 indTrace: 377\nIt: 395, obj value (lsEnd): 0.01445789659 indTrace: 395\nIt: 577, obj value (lsEnd): 0.0127023889 indTrace: 577\ntimeSpan = 32.356455 maxTime = 30\nEmini is: 0.0127023889\nxmini are:\n-1.280320232 0.6589842054 1.264422506 0.08107323782 0.8768339596 \nTotally it used 32.356479 secs\nNo. of function call is: 11250"
+  },
+  {
+    "objectID": "parts/workshop.html#comparing-the-prior-result-with-the-target-quantiles",
+    "href": "parts/workshop.html#comparing-the-prior-result-with-the-target-quantiles",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Comparing the prior result with the target quantiles",
+    "text": "Comparing the prior result with the target quantiles\n\nmatplot(\n    x = coarseGrid,\n    y = min_result$required,\n    type = \"o\",\n    lty = 1,\n    col = 1\n)\nmatlines(\n    x = coarseGrid,\n    y = min_result$quantiles,\n    type = \"o\",\n    lty = 2,\n    col = 1\n)\nlegend(\n    \"topleft\",\n    legend = c(\"Target quantiles\", \"Obtained quantiles\"),\n    lty = 1:2,\n    col = 1\n)"
+  },
+  {
+    "objectID": "parts/workshop.html#comparing-the-prior-result-with-the-target-quantiles-output",
+    "href": "parts/workshop.html#comparing-the-prior-result-with-the-target-quantiles-output",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Comparing the prior result with the target quantiles",
+    "text": "Comparing the prior result with the target quantiles"
+  },
+  {
+    "objectID": "parts/workshop.html#resulting-prior-parameters",
+    "href": "parts/workshop.html#resulting-prior-parameters",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Resulting prior parameters",
+    "text": "Resulting prior parameters\n\nmin_result$model\n\nA logistic log normal model will describe the relationship between dose and toxicity: p(Tox|d)=f(X=1|θ,d)=eα+β⋅log(d/dref)1+eα+β⋅log(d/dref) p(Tox | d) = f(X = 1 | \\theta, d) = \\frac{e^{\\alpha + \\beta \\cdot log(d/d_{ref})}}{1 + e^{\\alpha + \\beta \\cdot log(d/d_{ref})}} where dref denotes a reference dose.\nThe prior for θ is given by𝜽=[αlog(β)]∼N([−1.280.66],[1.600.090.090.01]) \\boldsymbol\\theta = \\begin{bmatrix}\\alpha \\\\ log(\\beta)\\end{bmatrix}\\sim N \\left(\\begin{bmatrix}-1.28 \\\\  0.66\\end{bmatrix} , \\begin{bmatrix} 1.60 &  0.09 \\\\ 0.09 &  0.01\\end{bmatrix} \\right) \nThe reference dose will be 100.00."
+  },
+  {
+    "objectID": "parts/workshop.html#mixture-priors",
+    "href": "parts/workshop.html#mixture-priors",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Mixture priors",
+    "text": "Mixture priors\n\nSometimes we have more specific prior information about the toxicity probabilities at the doses of interest, for example from preclinical data or from similar drugs.\nIn such cases, we can use mixture priors to incorporate this information into the CRM model\nFor example, we can use a logistic log-normal model with a mixture of two normal distributions, with the weights of the two components reflecting our uncertainty about which scenario is more likely\nApplications of mixture priors include:\n\nbimodal: e.g. one representing a “low toxicity” scenario and one representing a “high toxicity” scenario\nborrowing from another compound: e.g. one representing the information from a similar drug and one representing a minimally informative prior\nborrowing from another population: e.g. one representing the behavior from a global study population and one minimally informative"
+  },
+  {
+    "objectID": "parts/workshop.html#mixture-priors-in-crmpack",
+    "href": "parts/workshop.html#mixture-priors-in-crmpack",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Mixture priors in crmPack",
+    "text": "Mixture priors in crmPack\ncrmPack currently includes the following classes for mixture priors:\n\nLogisticNormalMixture:\n\nstandard logistic regression model with a mixture of K=2K=2 bivariate normal priors on the intercept and slope parameters\nthe weight parameter is also estimated from the data and has a Beta hyperprior distribution\n\nLogisticNormalFixedMixture\n\nstandard logistic regression model with fixed mixture of multiple bivariate (log-) normal priors on the intercept and slope parameters\nthe weights are fixed, and K&gt;2K&gt;2 mixture components can be used"
+  },
+  {
+    "objectID": "parts/workshop.html#example-of-logisticnormalmixture",
+    "href": "parts/workshop.html#example-of-logisticnormalmixture",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example of LogisticNormalMixture",
+    "text": "Example of LogisticNormalMixture\nLet’s first define two bivariate normal components:\n\ncomp1 &lt;- ModelParamsNormal(\n    mean = c(-0.85, 1),\n    cov = matrix(c(1, -0.5, -0.5, 1), nrow = 2)\n)\ncomp2 &lt;- ModelParamsNormal(\n    mean = c(1, 1.5),\n    cov = matrix(c(1.2, -0.45, -0.45, 0.6), nrow = 2)\n)\n\nSay we use a uniform Beta(1,1)\\textrm{Beta}(1,1) hyperprior for the weight parameter, and a reference dose of d*=50d^{*} = 50:\n\nnormal_mix_prior &lt;- LogisticNormalMixture(\n    comp1 = comp1,\n    comp2 = comp2,\n    weightpar = c(a = 1, b = 1),\n    ref_dose = 50\n)\nnormal_mix_prior\n\nA mixture of two logistic log normal models will describe the relationship between dose and toxicity: p(Tox|d)=f(X=1|θ,d)=eα+β⋅log(d/d*)1+eα+β⋅log(d/d*) p(Tox | d) = f(X = 1 | \\theta, d) = \\frac{e^{\\alpha + \\beta \\cdot log(d/d^*)}}{1 + e^{\\alpha + \\beta \\cdot log(d/d^*)}} where d* denotes a reference dose.\nThe prior for θ is given by θ=[αlog(β)]∼w⋅N([−0.851.00],[1.00−0.50−0.501.00])+(1−w)⋅N([1.001.50],[1.20−0.45−0.450.60]) \\theta = \\begin{bmatrix} \\alpha \\\\ log(\\beta) \\end{bmatrix} \\sim w \\cdot N \\left(\\begin{bmatrix}-0.85 \\\\  1.00\\end{bmatrix} , \\begin{bmatrix}  1.00 & -0.50 \\\\ -0.50 &  1.00\\end{bmatrix} \\right) + (1 - w) \\cdot N \\left(\\begin{bmatrix} 1.00 \\\\  1.50\\end{bmatrix} , \\begin{bmatrix}  1.20 & -0.45 \\\\ -0.45 &  0.60\\end{bmatrix} \\right) \nand the prior for w is given by\nw∼Beta(1.00,1.00) w \\sim Beta( 1.00,  1.00) \nThe reference dose will be 50.00."
+  },
+  {
+    "objectID": "parts/workshop.html#example-of-logisticnormalfixedmixture",
+    "href": "parts/workshop.html#example-of-logisticnormalfixedmixture",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example of LogisticNormalFixedMixture",
+    "text": "Example of LogisticNormalFixedMixture\nHere we need to fix the weights of the mixture components, for example to 0.5 each:\n\nnormal_mix_fix_weights_prior &lt;- LogisticNormalFixedMixture(\n    components = list(\n        comp1 = comp1,\n        comp2 = comp2\n    ),\n    weights = c(0.5, 0.5),\n    ref_dose = 50\n)\nnormal_mix_fix_weights_prior\n\nA mixture of 2 logistic log normal models with fixed weights will describe the relationship between dose and toxicity: p(Tox|d)=f(X=1|θ,d)=eα+β⋅log(d/d*)1+eα+β⋅log(d/d*) p(Tox | d) = f(X = 1 | \\theta, d) = \\frac{e^{\\alpha + \\beta \\cdot log(d/d^*)}}{1 + e^{\\alpha + \\beta \\cdot log(d/d^*)}} where d* denotes a reference dose.\nThe prior for θ is given byθ=[αβ]∼∑i=12wi⋅N(𝝁i,𝚺i) \\theta = \\begin{bmatrix} \\alpha \\\\ \\beta \\end{bmatrix} \\sim \\sum_{i=1}^{2}w_i \\cdot N \\left( \\mathbf{\\mu}_i ,  \\mathbf{\\Sigma}_i \\right)  with ∑i=12wi=1 \\sum_{i=1}^{2} w_i = 1  The individual components of the mixture are 𝜽1=[αβ]∼N([−0.851.00],[1.00−0.50−0.501.00]) \\boldsymbol\\theta_1 = \\begin{bmatrix}\\alpha \\\\ \\beta\\end{bmatrix}\\sim N \\left(\\begin{bmatrix}-0.85 \\\\  1.00\\end{bmatrix} , \\begin{bmatrix} 1.00 & -0.50 \\\\ -0.50 &  1.00\\end{bmatrix} \\right) \nwith weight 0.5 and 𝜽2=[αβ]∼N([1.001.50],[1.20−0.45−0.450.60]) \\boldsymbol\\theta_2 = \\begin{bmatrix}\\alpha \\\\ \\beta\\end{bmatrix}\\sim N \\left(\\begin{bmatrix} 1.00 \\\\  1.50\\end{bmatrix} , \\begin{bmatrix} 1.20 & -0.45 \\\\ -0.45 &  0.60\\end{bmatrix} \\right) \nwith weight 0.5 The reference dose will be 50.00."
+  },
+  {
+    "objectID": "parts/workshop.html#comparison-of-the-two-prior-specifications",
+    "href": "parts/workshop.html#comparison-of-the-two-prior-specifications",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Comparison of the two prior specifications",
+    "text": "Comparison of the two prior specifications\nWe can easily see the difference in the JAGS code:\n\nbody(normal_mix_prior@priormodel)\n\n{\n    w ~ dbeta(weightpar[1], weightpar[2])\n    wc &lt;- 1 - w\n    comp0 ~ dbern(wc)\n    comp &lt;- comp0 + 1\n    theta ~ dmnorm(mean[1:2, comp], prec[1:2, 1:2, comp])\n    alpha0 &lt;- theta[1]\n    alpha1 &lt;- theta[2]\n}\n\nbody(normal_mix_fix_weights_prior@priormodel)\n\n{\n    comp ~ dcat(weights)\n    theta ~ dmnorm(mean[1:2, comp], prec[1:2, 1:2, comp])\n    alpha0 &lt;- theta[1]\n    alpha1 &lt;- theta[2]\n}"
+  },
+  {
+    "objectID": "parts/workshop.html#yet-another-but-different-mixture-prior",
+    "href": "parts/workshop.html#yet-another-but-different-mixture-prior",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Yet another but different mixture prior",
+    "text": "Yet another but different mixture prior\n\nLogisticLogNormalMixture\n\nstandard logistic model with online mixture of K=2K=2 bivariate log normal priors on the intercept and slope parameters\ncan be used when data is arising online from the informative component of the prior, at the same time with the data of the trial of main interest\nassumes the same prior distribution for the informative component and the current trial data (for simplicity), the only question is whether the parameters are identical or not\nneeds to use DataMixture class to specify the data structure for the online data"
+  },
+  {
+    "objectID": "parts/workshop.html#example-of-logisticlognormalmixture",
+    "href": "parts/workshop.html#example-of-logisticlognormalmixture",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example of LogisticLogNormalMixture",
+    "text": "Example of LogisticLogNormalMixture\nNote that we just use one component, i.e. one prior here:\n\nonline_mix_prior &lt;- LogisticLogNormalMixture(\n    share_weight = 0.5, # probability that the current and external data are from the same distribution\n    ref_dose = 50,\n    mean = comp1@mean,\n    cov = comp1@cov\n)\n\nNow we define the data, which consists of the current trial data and the external data:\n\ndata_share &lt;- DataMixture(\n    doseGrid = c(25, 50, 100, 200, 300),\n    x = c(25, 25, 50, 50),\n    y = c(0, 1, 0, 1),\n    xshare = c(25, 25, 50, 50, 100, 100, 300, 300),\n    yshare = c(0, 0, 0, 1, 0, 0, 0, 1)\n)"
+  },
+  {
+    "objectID": "parts/workshop.html#example-of-logisticlognormalmixture-contd",
+    "href": "parts/workshop.html#example-of-logisticlognormalmixture-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example of LogisticLogNormalMixture (cont’d)",
+    "text": "Example of LogisticLogNormalMixture (cont’d)\nLet’s look at the model definition:\n\nbody(online_mix_prior@priormodel)\n\n{\n    for (k in 1:2) {\n        theta[k, 1:2] ~ dmnorm(mean, prec)\n        alpha0[k] &lt;- theta[k, 1]\n        alpha1[k] &lt;- exp(theta[k, 2])\n    }\n    comp ~ dcat(cat_probs)\n}\n\nbody(online_mix_prior@datamodel)\n\n{\n    for (i in 1:nObs) {\n        stand_log_dose[i] &lt;- log(x[i]/ref_dose)\n        logit(p[i]) &lt;- alpha0[comp] + alpha1[comp] * stand_log_dose[i]\n        y[i] ~ dbern(p[i])\n    }\n    for (j in 1:nObsshare) {\n        stand_log_dose_share[j] &lt;- log(xshare[j]/ref_dose)\n        logit(pshare[j]) &lt;- alpha0[2] + alpha1[2] * stand_log_dose_share[j]\n        yshare[j] ~ dbern(pshare[j])\n    }\n}\n\n\nWe see that comp == 2 means that the current and external data are from the same distribution, while comp == 1 means they are from different distributions."
+  },
+  {
+    "objectID": "parts/workshop.html#example-of-logisticlognormalmixture-contd-1",
+    "href": "parts/workshop.html#example-of-logisticlognormalmixture-contd-1",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example of LogisticLogNormalMixture (cont’d)",
+    "text": "Example of LogisticLogNormalMixture (cont’d)\nWe can produce samples then as usually:\n\nsamples_share &lt;- mcmc(data_share, online_mix_prior, McmcOptions())\nplot(samples_share, online_mix_prior, data_share)\n\n\nProbability that the current and external data are from the same distribution:\n\nmean(samples_share@data$comp == 2)\n\n[1] 0.5623"
+  },
+  {
+    "objectID": "parts/workshop.html#motivation-1",
+    "href": "parts/workshop.html#motivation-1",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Motivation",
+    "text": "Motivation\n\nThe TITE-CRM design was introduced by Cheung and Chappell (2004) to address the issue of late-onset toxicities in dose-escalation trials (e.g. up to 6 months in radiotherapy trials)\nIt would be impractical to always wait for the full possible DLT assessment period to elapse for all patients before making dose-escalation decisions, as this would lead to very long trial durations (e.g. 12 years)\nThe TITE-CRM design allows for making dose-escalation decisions based on partial information about the occurrence of DLTs, by using a weighted likelihood approach that accounts for the time-to-event nature of the data\nThis leads to much shorter trial durations (e.g. 2-4 years) while still maintaining the CRM’s accuracy and safety"
+  },
+  {
+    "objectID": "parts/workshop.html#required-design-inputs",
+    "href": "parts/workshop.html#required-design-inputs",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Required design inputs",
+    "text": "Required design inputs\nIn addition to the standard CRM design inputs, additional inputs are required for TITE-CRM designs:\n\nA DLT observation time period of length TmaxT_{\\textrm{max}}, also called the DLT window\nA weighting function w(t)w(t) that assigns weights to the observed data based on the time of observation relative to the DLT window\nThe required follow-up time before enrolling the next cohort at a potentially higher dose level, called “safety window” in crmPack"
+  },
+  {
+    "objectID": "parts/workshop.html#model-specification",
+    "href": "parts/workshop.html#model-specification",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Model specification",
+    "text": "Model specification\nThe TITE-CRM uses a pseudo-likelihood function:\n∏i=1n[(p(xi)w(ti))yi(1−p(xi)w(ti))1−yi]\n\\prod_{i=1}^{n} \\left[ (p(x_i)w(t_i))^{y_i} (1 - p(x_i)w(t_i))^{1 - y_i} \\right]\n\nwhere p(xi)p(x_i) is a standard CRM model for the probability of DLT at dose xix_i, yiy_i is the binary indicator of whether a DLT was observed for patient ii, and w(ti)w(t_i) is the weight assigned to patient ii based on the time of observation tit_i relative to the DLT window.\nNote: In crmPack this is implemented with the “Poisson trick” in JAGS. In principle this could work for any CRM model, but we restrict it to LogisticLogNormal so far in crmPack."
+  },
+  {
+    "objectID": "parts/workshop.html#weighting-functions",
+    "href": "parts/workshop.html#weighting-functions",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Weighting functions",
+    "text": "Weighting functions\nIn crmPack you can choose between\n\nthe linear weighting function w(t)=min⁡(1,t/Tmax)w(t) = \\min(1, t / T_{\\textrm{max}}), which is the most commonly used weighting function in the literature, and\nthe adaptive weighting function proposed in formula (3) of Cheung and Chappell (2004): w(t)=κz+1+1z+1(t−t(κ)t(κ+1)−t(κ))\nw(t) = \\frac{\\kappa}{z + 1} + \\frac{1}{z + 1}\\left(\\frac{t - t_{(\\kappa)}}{t_{(\\kappa + 1)} - t_{(\\kappa)}}\\right)\n\n\nwhere zz is the total number of DLTs, 0≡t(0)&lt;t(1)≤⋯≤t(z)&lt;t(z+1)≡Tmax0 \\equiv t_{(0)} &lt; t_{(1)} \\leq \\cdots \\leq t_{(z)} &lt; t_{(z+1)} \\equiv T_{\\textrm{max}} are the ordered failure times, and κ=max⁡0≤j≤z{j:t≥t(j)}\\kappa = \\max_{0 \\leq j \\leq z}\\{j : t \\geq t_{(j)}\\}\nBasically, the adaptive function allocates more weight to each record than the linear function when DLTs are observed early and less weight when DLTs are observed late."
+  },
+  {
+    "objectID": "parts/workshop.html#illustration",
+    "href": "parts/workshop.html#illustration",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Illustration",
+    "text": "Illustration\n\nFrom Fig. 1 from Werkhoven et al. (2020)"
+  },
+  {
+    "objectID": "parts/workshop.html#example-with-crmpack",
+    "href": "parts/workshop.html#example-with-crmpack",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example with crmPack",
+    "text": "Example with crmPack\n\nmodel &lt;- TITELogisticLogNormal(\n    mean = c(1.33, 1.49),\n    cov = matrix(c(1.826, 0.0209, 0.0209, 0.0245), nrow = 2),\n    ref_dose = 56,\n    weight_method = \"linear\"\n)\nincrements &lt;- IncrementsRelative(intervals = c(0, 20), increments = c(2, 1))\nnext_best &lt;- NextBestMTD(\n    # Note that we use a \"nonparametric\" rule here.\n    target = 0.3,\n    derive = function(mtd_samples) mean(mtd_samples)\n)\nstopping &lt;- StoppingMinPatients(n = 20)\nsize &lt;- CohortSizeConst(3)\nt_max &lt;- 42\n# Note that we need to use the DataDA class because we need to have\n# DLT times in the data.\nempty_data &lt;- DataDA(doseGrid = seq(from = 2, to = 50, by = 2), Tmax = t_max)\nsafety_window &lt;- SafetyWindowConst(gap = c(7, 5), follow = 7, follow_min = 14)"
+  },
+  {
+    "objectID": "parts/workshop.html#example-with-crmpack-contd",
+    "href": "parts/workshop.html#example-with-crmpack-contd",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example with crmPack (cont’d)",
+    "text": "Example with crmPack (cont’d)\nSome observations here:\n\nWe use a “nonparametric” rule for the next best dose, because we do not (yet) have a TITE-CRM specific model-based rule implemented\nWe use the DataDA class for the data, because we need to have DLT times in the data\nThe safety window can be a bit confusing:\n\ngap is the time between patients in the same cohort (so 7 days between the first and second patient, and 5 days between the second and third patient)\nfollow is the time we need to wait after the last patient in the cohort before enrolling the next cohort\nfollow_min is the time at least one patient needs to have been followed up for before enrolling the next cohort"
+  },
+  {
+    "objectID": "parts/workshop.html#example-with-crmpack-contd-1",
+    "href": "parts/workshop.html#example-with-crmpack-contd-1",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example with crmPack (cont’d)",
+    "text": "Example with crmPack (cont’d)\nWe need to define the true scenario in terms of both the true toxicity probabilities at the doses of interest and the distribution of DLT times:\n\ntruth &lt;- function(x) {\n    plogis(2 + 3 * log(x / 56))\n}\n\nonset &lt;- 3\nexp_cond_cdf &lt;- function(x) {\n    1 -\n        (pexp(x, 1 / onset, lower.tail = FALSE) -\n            pexp(t_max, 1 / onset, lower.tail = FALSE)) /\n            pexp(t_max, 1 / onset)\n}"
+  },
+  {
+    "objectID": "parts/workshop.html#example-with-crmpack-contd-2",
+    "href": "parts/workshop.html#example-with-crmpack-contd-2",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example with crmPack (cont’d)",
+    "text": "Example with crmPack (cont’d)\nLet’s plot the CDF of this truncated exponential distribution of DLT times (constrained to the DLT window) to see how it looks like:\n\ncurve(exp_cond_cdf, from = 0, to = t_max, ylab = \"CDF\", xlab = \"Time\")\nabline(v = onset)"
+  },
+  {
+    "objectID": "parts/workshop.html#example-with-crmpack-contd-3",
+    "href": "parts/workshop.html#example-with-crmpack-contd-3",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example with crmPack (cont’d)",
+    "text": "Example with crmPack (cont’d)\nNow we can define the design and run simulations:\n\ndesign &lt;- DADesign(\n    model = model,\n    increments = increments,\n    nextBest = next_best,\n    stopping = stopping,\n    cohort_size = size,\n    data = empty_data,\n    safetyWindow = safety_window,\n    startingDose = 2\n)\nsims &lt;- simulate(\n    object = design,\n    truthTox = truth,\n    truthSurv = exp_cond_cdf,\n    trueTmax = t_max,\n    nsim = 100,\n    seed = 413,\n    mcmcOptions = McmcOptions(\n        burnin = 500,\n        step = 2,\n        samples = 200,\n        rng_kind = \"Mersenne-Twister\",\n        rng_seed = 413\n    )\n)"
+  },
+  {
+    "objectID": "parts/workshop.html#example-with-crmpack-contd-4",
+    "href": "parts/workshop.html#example-with-crmpack-contd-4",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Example with crmPack (cont’d)",
+    "text": "Example with crmPack (cont’d)\n\nsummary(sims, truth = truth, target = c(0.29, 0.31))\n\nSummary of 100 simulations\n\nTarget toxicity interval was 29, 31 %\nTarget dose interval corresponding to this was 21.3, 22 \nIntervals are corresponding to 10 and 90 % quantiles\n\nNumber of patients overall : mean 21 (21, 21) \nNumber of patients treated above target tox interval : mean 8 (0, 12) \nProportions of DLTs in the trials : mean 27 % (19 %, 33 %) \nMean toxicity risks for the patients on active : mean 27 % (17 %, 35 %) \nDoses selected as MTD : mean 23.3 (18, 28) \nTrue toxicity at doses selected : mean 35 % (20 %, 48 %) \nProportion of trials selecting target MTD: 25 %\nDose most often selected as MTD: 22 \nObserved toxicity rate at dose most often selected: 28 %\nFitted toxicity rate at dose most often selected : mean 29 % (17 %, 46 %) \nStop reason triggered:\n ≥ 20 patients dosed :  100 %"
+  },
+  {
+    "objectID": "parts/workshop.html#practical-aspects",
+    "href": "parts/workshop.html#practical-aspects",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Practical aspects",
+    "text": "Practical aspects\nWerkhoven et al. (2020) discuss practical aspects of running TITE-CRM designs:\n\nThey “have found that designing and running early phase trials using the TiTE-CRM can be complex, but is feasible and worthwhile”\nPrior probability of DLTs at the dose grid:\n\nuse the “background DLT probability”, i.e. without any experimental treatment, as reference (all probabilities need to be higher)\neffect of the addition of the experimental drug can then be approximated by multiplication with dose enhancement factors obtained from preclinical studies\n\nRecommend to have the first few patients treated at the starting dose, to avoid aggressive escalation early in the trial\nDon’t just report the final MTD estimate, but also the credible interval for it: particularly relevant with incomplete follow-up data"
+  },
+  {
+    "objectID": "parts/workshop.html#learning-more",
+    "href": "parts/workshop.html#learning-more",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Learning more",
+    "text": "Learning more\nLots of documentation is available on the crmPack website: crmPack.org\nIt includes:\n\n13 vignettes with detailed examples of how to use the package\n\nIn particular, the paper vignette is a great starting point\nAlso backfilling cohorts are explained in a dedicated backfilling vignette e.g.\n\nLink to the online reference explaining all the functions and classes in the package\nContact information for questions and suggestions, as well as a link to the GitHub repository for bug reports and feature requests"
+  },
+  {
+    "objectID": "parts/workshop.html#how-to-contribute-on-github",
+    "href": "parts/workshop.html#how-to-contribute-on-github",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "How to contribute on GitHub",
+    "text": "How to contribute on GitHub\n\nThe package’s repo is hosted on GitHub at github.com/openpharma/crmPack\nContributions are very welcome:\n\nQuestions\nBug reports\nFeature requests\nCode contributions (under the license of the project, i.e. GPL v2 or higher)\n\nWe will also soon have a contributing guide in the repo with more detailed instructions on how to contribute code, but here are some general guidelines:\n\nFork the repo for your work\nMake your changes and commit them with clear messages\nPush to your fork and create a pull request to the main crmPack repo\nI will review your pull request and provide feedback, and once it’s approved I will merge it into the main branch"
+  },
+  {
+    "objectID": "parts/workshop.html#custom-jags-model-workflow",
+    "href": "parts/workshop.html#custom-jags-model-workflow",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Custom JAGS model workflow",
+    "text": "Custom JAGS model workflow\nIt is actually quite straightforward to implement a custom JAGS model in crmPack:\n\nDefine a new S4 class that inherits from GeneralModel with setClass()\nImplement a constructor / initialization function for the new class, which specifies the likelihood and prior distributions in the underlying GeneralModel slots:\n\nThe datamodel slot should contain the JAGS code for the likelihood\nThe priormodel slot should contain the JAGS code for the prior distributions\nThe modelspecs slot is a function that returns required JAGS inputs\nThe init slot is a function that returns initial values for the MCMC sampling\nThe datanames slot is a character vector of the names of the data inputs required for the likelihood\n\nImplement dose() and prob() methods for the new class, which compute the dose and toxicity probability for given model parameters using setMethod()\n\nFull examples are available in the JSS paper and in the parallelization vignette."
+  },
+  {
+    "objectID": "parts/workshop.html#professional-support-sla",
+    "href": "parts/workshop.html#professional-support-sla",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "Professional Support: SLA 🤝",
+    "text": "Professional Support: SLA 🤝\n\n\n\nService Level Agreement (SLA) with RPACT\nGet technical software support for written support requests\nGet company specific training\nGet company specific software validation documentation for each crmPack release on CRAN (coming in 2026)\n\n\n\n\n\nMake a crmPack installation qualification on each Roche computer (coming in 2026)\nDetermine the direction of crmPack future development activities (many new features in recent release!)\nOptional support for health authority interactions\nOptional consultation to support specific clinical trials"
+  },
+  {
+    "objectID": "parts/workshop.html#references",
+    "href": "parts/workshop.html#references",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "References",
+    "text": "References\n\n\n\n\nCheung, Ying Kuen, and Rick Chappell. 2004. “Sequential Designs for Phase i Clinical Trials with Late-Onset Toxicities.” Biometrics 56 (4): 1177–82. https://doi.org/10.1111/j.0006-341X.2000.01177.x.\n\n\nJi, Y, P Liu, Y Li, and N Bekele. 2010. “A Modified Toxicity Probability Interval Method for Dose-Finding Trials.” Clin Trials 7: 653–63. https://doi.org/doi.org/10.1177/1740774510382799.\n\n\nLe Tourneau, C, JJ Lee, and LL Siu. 2009. “Dose Escalation Methods in Phase i Cancer Clinical Trials.” J Natl Cancer Inst, 708–20.\n\n\nLin, Y, and WJ Shih. 2015. “Statistical Properties of the Traditional Algorithm-Based Designs for Phase i Cancer Clinical Trials.” Biostatistics 2: 203 -- 215. https://doi.org/doi.org/10.1093/biostatistics/2.2.203.\n\n\nLiu, S, and Y Yuan. 2015. “Bayesian Optimal Interval Designs for Phase i Clinical Trials.” JRSS(C) 64: 507 -- 523.\n\n\nNeuenschwander, B, M Branson, and T Gsponer. 2008. “Critical Aspects of the Bayesian Approach to Phase i Cancer Trials.” Statistics in Medicine.\n\n\nNonami, Atsushi, Kensuke Matsuda, Kouta Funakoshi, Ryosuke Kato, Hideaki Takahashi, and Yoko Edahiro. 2025. “Impact of Dose-Escalation Design on the Safety and Development of Anticancer Drugs in Clinical Trials.” Clinical and Translational Science 18 (10): e70367. https://doi.org/https://doi.org/10.1111/cts.70367.\n\n\nO’Quigley, John, Margaret Pepe, and Lloyd Fisher. 1990. “Continual Reassessment Method: A Practical Design for Phase 1 Clinical Trials in Cancer.” Biometrics 46 (1): 33–48.\n\n\nRogatko, A, D Shoeneck, W Jonas, M Tighiouart, FR Khuri, and A Porter. 2007. “Translation of Innovative Designs into Phase 1 Trials.” J Clin Onc 25 (31): 4982–86.\n\n\nSabanés Bové, Daniel, Wai Yin Yeung, Giuseppe Palermo, and Thomas Jaki. 2019. “Model-Based Dose Escalation Designs in R with crmPack.” Journal of Statistical Software 89 (10): 1–22. https://doi.org/10.18637/jss.v089.i10.\n\n\nSkolnik, JM, JS Barrett, B Jayaraman, D Patel, and PC Adamson. 2008. “Shortening the Timeline of Pediatric Phase i Trials: The Rolling Six Design.” J Clin Onc 26 (2): 190–95. https://doi.org/10.1200/JCO.2007.12.7712.\n\n\nvan Brummelen, EM, AD Huitema, E van Werkhoven, JH Beijnen, and JH Schellens. 2016. “The Performance of Model-Based Versus Rule-Based Phase i Clinical Trials in Oncology: A Quantitative Comparison of the Performance of Model-Based Versus Rule-Based Phase i Trials with Molecularly Targeted Anticancer Drugs over the Last 2 Years.” J Pharmacokinet Pharmacodyn 43 (3): 235–42.\n\n\nWerkhoven, Erik van, Samantha Hinsley, Eleni Frangou, et al. 2020. “Practicalities in Running Early-Phase Trials Using the Time-to-Event Continual Reassessment Method (TiTE-CRM) for Interventions with Long Toxicity Periods Using Two Radiotherapy Oncology Trials as Examples.” BMC Medical Research Methodology 20 (1): 162. https://doi.org/10.1186/s12874-020-01012-z."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "crmPack Workshop at R/Pharma 2026",
+    "section": "",
+    "text": "Welcome to the crmPack workshop at R/Pharma 2026!\n\n🧑‍💻 Presenter: Daniel Sabanés Bové (RPACT GmbH)\n🗓 Date: 30 September 2026\nWorkshop slides\nCode examples"
+  },
+  {
+    "objectID": "code.html",
+    "href": "code.html",
+    "title": "Code",
+    "section": "",
+    "text": "workshop.R\n\n\n9/28/26, 7:38:21 AM\n\n\n\n\n\nNo matching items"
+  }
+]
