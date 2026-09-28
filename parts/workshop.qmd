@@ -1,7 +1,7 @@
 ---
 title: "crmPack Workshop at R/Pharma 2026"
 subtitle: "Model-based dose escalation with crmPack"
-author: "Daniel Sabanés Bové"
+author: "Daniel Sabanés Bové (RPACT)"
 part: 1
 description: "Workshop on model-based dose escalation designs with crmPack at R/Pharma 2026."
 image: /figures/illustration/exercise.jpg
@@ -12,7 +12,7 @@ execute:
 ```{r}
 #| echo: false
 #| cache: false
-library(rpact)
+library(emoji)
 ```
 
 ## Workshop outline 📦
@@ -41,9 +41,9 @@ Part of this workshop material is based on the `crmPack` training materials deve
 
 ## Today's workshop
 
-- These slides are available at: TODO
-- [Download the R code used in these slides](/code/workshop.R)
-- The Posit Cloud workshop can be accessed [here](TODO)
+- These slides are available at: [TODO](TODO)
+- Download the R code used in these slides [here](/code/workshop.R)
+- The Posit Cloud workshop can be accessed [here](https://posit.cloud/spaces/824929/content/13012234)
 - Any questions please post them in the Zoom chat
 
 # Motivation
@@ -99,6 +99,48 @@ With `crmPack` we aim to make it easy for everyone to use model-based designs in
 -  Visualization and tabulation of results
 -  A user-friendly interface to backfill cohorts
 -  A growing collection of advanced design options (e.g. dual endpoint designs, time-to-event designs, etc.)
+
+## Overview `r emoji("package")`
+
+::: columns
+::: {.column width="50%"}
+- Specialized R package for *dose escalation trials*
+- Initial [CRAN release](https://cran.r-project.org/web/packages/crmPack/index.html) in 2016, publication by @sabanes2019
+- Higher *flexibility* compared to other software, thanks to its modular design
+- Easy *extensibility* and adoption of new designs 
+- Produces visual and numeric outputs for *easy interpretation*
+- Facilitates *simulations* to assess the performance under various scenarios
+:::
+::: {.column width="50%"}
+![](/figures/crmPack_paper.jpg){height="500px"}
+:::
+:::
+
+## Large group of contributors `r emoji("office")`
+
+::: {.columns}
+::: {.column width="50%"}
+- Clara Beck (Bayer)
+- Oliver Boix (Bayer)
+- Prerana Chandratre (Bayer)
+- Robert Adams (Bayer)
+- Dimitris Kontos (ClinBAY/Bayer)
+- Jiawen Zhu (Genentech)
+- Ziwei Liao (Genentech)
+- Daniel Sabanés Bové (Roche/RCONIS)
+- John Kirkpatrick (Roche/Astellas)
+:::
+::: {.column width="50%"}
+- Giuseppe Palermo (Roche)
+- Guanya Peng (Roche)
+- Doug Kelkhoff (Roche)
+- Wojciech Wojciak (Roche)
+- Marlene Schulte-Goebel (Merck)
+- Burak Kuersad Guenhan (Merck)
+- Wai Yin Yeung (University of Lancaster/Roche)
+- Thomas Jaki (University of Lancaster/Cambridge/Regensburg)
+:::
+:::
 
 # Model-based dose escalation design
 
@@ -891,5 +933,28 @@ It is actually quite straightforward to implement a custom JAGS model in `crmPac
 1. Implement `dose()` and `prob()` methods for the new class, which compute the dose and toxicity probability for given model parameters using `setMethod()`
 
 Full examples are available [in the JSS paper](https://www.crmpack.org/vignettes/getting-started/crmPack_paper/#extending-crmpack-functionality) and [in the parallelization vignette](https://www.crmpack.org/vignettes/utilities/crmPack_parallel_computing/#worked-out-example).
+
+
+## Professional Support: SLA `r emoji("handshake")`
+
+::: columns
+::: {.column width="48%"}
+-   *Service Level Agreement* (SLA) with RPACT
+-   Get *technical software support* for written support requests
+-   Get company specific *training*
+-   Get company specific *software validation documentation* for each `crmPack`
+    release on [CRAN](https://cran.r-project.org/package=rpact) (coming in 2026)
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+-   Make a `crmPack` *installation qualification* on each Roche computer (coming in 2026)
+-   Determine the direction of `crmPack` *future development activities* (many new features in recent release!)
+-   Optional support for health authority interactions
+-   Optional consultation to support specific clinical trials
+:::
+:::
 
 ## References

@@ -1,6 +1,6 @@
 ---
 title: 'crmPack Workshop at R/Pharma 2026'
-description: 'Workshop on model-based dose escalation designs with crmPack at R/Pharma 2026'
+description: 'Workshop on dose escalation designs with crmPack at R/Pharma 2026'
 author:
   - "{{< var author-sabanes >}}"  
 affiliation: "RPACT"
@@ -16,16 +16,8 @@ editor:
 
 **Welcome to the crmPack workshop at R/Pharma 2026!**
 
-The workshop materials are available in the
-[GitHub repository](https://github.com/rpact-com/presentation-2026-09-30-rinpharma).
-
-**Details**
-
 - 🧑‍💻 Presenter: Daniel Sabanés Bové
   ([RPACT GmbH](https://www.rpact.com))
 - 🗓 Date: 30 September 2026
-
-## [{{< fa calendar-check >}}]{.yellow} Agenda
- 
 - [Workshop slides](/parts/workshop.qmd)
-  - Model-based dose escalation design, operating characteristics, and further topics
+- [Code examples](code.qmd)

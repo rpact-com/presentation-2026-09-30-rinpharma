@@ -42,7 +42,7 @@ jobs:
             any::rpact,
             any::tidyr,
             any::magrittr,
-            openpharma/crmPack,
+            any::crmPack,
             any::ggplot2,
             any::emmeans,
             any::emoji,
