@@ -21,11 +21,11 @@ library(rpact)
 ::: {.column width="70%"}
 - Motivation
 - Model-based dose escalation design
-- Example study design
 - Calculating operating characteristics
-- Backfilling cohorts
-- Custom JAGS models and prior construction
+- Prior construction
 - Time-to-event designs
+- Custom JAGS models 
+- Outlook
 :::
 
 ::: {.column width="30%"}
@@ -33,9 +33,17 @@ library(rpact)
 :::
 :::::
 
+# Getting started
+
 ## Acknowledgements
 
-Part of this training material is based on the `crmPack` training materials developed by John Kirkpatrick (Roche, now at Astellas). Thanks John for sharing!
+Part of this workshop material is based on the `crmPack` training materials developed by John Kirkpatrick (Roche, now at Astellas). Thanks John for sharing!
+
+## Today's workshop
+
+- These slides are available at: TODO
+- The Posit Cloud workshop can be accessed [here](TODO)
+- Any questions please post them in the Zoom chat
 
 # Motivation
 
@@ -129,8 +137,8 @@ empty_data <- Data(doseGrid = dose_grid)
 We can "update" the `Data` object with the information of a patient treated at dose 10, who did not experience a DLT, and a patient at dose 20 with a DLT:
 
 ```{r}
-data <- empty_data |> 
-    update(x = 10, y = 0) |> 
+data <- empty_data |>
+    update(x = 10, y = 0) |>
     update(x = 20, y = 1)
 ```
 
@@ -158,12 +166,12 @@ For example, let's use the following model:
 
 ```{r}
 get_cov <- function(sigma0, sigma1, rho) {
-  matrix(c(sigma0^2, rho * sigma0 * sigma1, rho * sigma0 * sigma1, sigma1^2), nrow = 2)
+    matrix(c(sigma0^2, rho * sigma0 * sigma1, rho * sigma0 * sigma1, sigma1^2), nrow = 2)
 }
 model <- LogisticLogNormal(
-  mean = c(-3, 0.5),
-  cov = get_cov(sigma0 = 1, sigma1 = 2, rho = 0.5),
-  ref_dose = 20
+    mean = c(-3, 0.5),
+    cov = get_cov(sigma0 = 1, sigma1 = 2, rho = 0.5),
+    ref_dose = 20
 )
 ```
 
@@ -181,11 +189,11 @@ We use MCMC, in particular Gibbs sampling implemented in JAGS, to generate (appr
 
 ```{r}
 mcmc_options <- McmcOptions(
-  burnin = 1000,
-  step = 10,
-  samples = 1000,
-  rng_kind = "Mersenne-Twister",
-  rng_seed = 12345
+    burnin = 1000,
+    step = 10,
+    samples = 1000,
+    rng_kind = "Mersenne-Twister",
+    rng_seed = 12345
 )
 ```
 
@@ -299,11 +307,11 @@ Then the next best dose is calculated with the `nextBest` method:
 
 ```{r}
 next_best_dose <- nextBest(
-  next_best, 
-  doselimit = max_dose, 
-  samples = posterior_samples, 
-  model = model, 
-  data = data
+    next_best,
+    doselimit = max_dose,
+    samples = posterior_samples,
+    model = model,
+    data = data
 )
 ```
 
@@ -329,8 +337,10 @@ We can also use the `fit()` method to get the posterior quantiles, and we can co
 
 ```{r}
 fitted_df <- fit(posterior_samples, model, data)
-loss_df <- next_best_dose$probs |> as.data.frame() |> dplyr::select(dose, posterior_loss)
-result_df <- dplyr::left_join(fitted_df, loss_df, by = "dose") 
+loss_df <- next_best_dose$probs |>
+    as.data.frame() |>
+    dplyr::select(dose, posterior_loss)
+result_df <- dplyr::left_join(fitted_df, loss_df, by = "dose")
 knitr::kable(head(result_df), digits = 3)
 ```
 
@@ -378,9 +388,9 @@ So we need to adjust the prior to be less confident, e.g. by changing the means 
 
 ```{r}
 model_adjusted <- LogisticLogNormal(
-  mean = c(-3, -1),
-  cov = get_cov(sigma0 = 4, sigma1 = 1, rho = 0),
-  ref_dose = 100
+    mean = c(-3, -1),
+    cov = get_cov(sigma0 = 4, sigma1 = 1, rho = 0),
+    ref_dose = 100
 )
 prior_samples_adjusted <- mcmc(model_adjusted, data = empty_data, options = mcmc_options)
 plot(prior_samples_adjusted, model_adjusted, empty_data)
@@ -403,7 +413,7 @@ For example:
 
 ```{r}
 scenario1 <- function(x) {
-    plogis(- 2 + 0.8 * log(x / 20))
+    plogis(-2 + 0.8 * log(x / 20))
 }
 ```
 
@@ -436,11 +446,11 @@ For example:
 
 ```{r}
 backfill_simple <- Backfill(
-  cohort_size = CohortSizeConst(3),
-  max_size = 12,
-  opening = OpeningMinCohorts(min_cohorts = 1),
-  recruitment = RecruitmentUnlimited(),
-  priority = "lowest"
+    cohort_size = CohortSizeConst(3),
+    max_size = 12,
+    opening = OpeningMinCohorts(min_cohorts = 1),
+    recruitment = RecruitmentUnlimited(),
+    priority = "lowest"
 )
 backfill_simple
 ```
@@ -480,51 +490,6 @@ The `summary` result can also be plotted:
 ```{r}
 plot(sims_summary)
 ```
-
-# Learning more
-
-## Learning more
-
-Lots of documentation is available on the `crmPack` website: [crmPack.org](https://crmPack.org/)
-
-It includes:
-
-- 13 vignettes with detailed examples of how to use the package
-  - In particular, the [paper](https://www.crmpack.org/vignettes/getting-started/crmPack_paper/) vignette is a great starting point
-  - Also backfilling cohorts are explained in a dedicated [backfilling](https://www.crmpack.org/vignettes/getting-started/crmPack_backfill/) vignette e.g.
-- Link to the online reference explaining all the functions and classes in the package
-- Contact information for questions and suggestions, as well as a link to the GitHub repository for bug reports and feature requests
-
-# Further topics
-
-## How to contribute on GitHub
-
-- The package's repo is hosted on GitHub at [github.com/openpharma/crmPack](https://github.com/openpharma/crmPack)
-- Contributions are very welcome:
-  - Questions
-  - Bug reports
-  - Feature requests
-  - Code contributions (under the license of the project, i.e. GPL v2 or higher)
-- We will also soon have a contributing guide in the repo with more detailed instructions on how to contribute code, but here are some general guidelines:
-  - Fork the repo for your work
-  - Make your changes and commit them with clear messages
-  - Push to your fork and create a pull request to the main `crmPack` repo
-  - I will review your pull request and provide feedback, and once it's approved I will merge it into the main branch
-
-## Custom JAGS model workflow
-
-It is actually quite straightforward to implement a custom JAGS model in `crmPack`:
-
-1. Define a new S4 class that inherits from `GeneralModel` with `setClass()`
-1. Implement a constructor / initialization function for the new class, which specifies the likelihood and prior distributions in the underlying `GeneralModel` slots:
-   1. The `datamodel` slot should contain the JAGS code for the likelihood
-   1. The `priormodel` slot should contain the JAGS code for the prior distributions
-   1. The `modelspecs` slot is a function that returns required JAGS inputs
-   1. The `init` slot is a function that returns initial values for the MCMC sampling
-   1. The `datanames` slot is a character vector of the names of the data inputs required for the likelihood
-1. Implement `dose()` and `prob()` methods for the new class, which compute the dose and toxicity probability for given model parameters using `setMethod()`
-
-Full examples are available [in the JSS paper](https://www.crmpack.org/vignettes/getting-started/crmPack_paper/#extending-crmpack-functionality) and [in the parallelization vignette](https://www.crmpack.org/vignettes/utilities/crmPack_parallel_computing/#worked-out-example).
 
 # Prior construction
 
@@ -882,5 +847,48 @@ summary(sims, truth = truth, target = c(0.29, 0.31))
   - effect of the addition of the experimental drug can then be approximated by multiplication with dose enhancement factors obtained from preclinical studies
 - Recommend to have the first few patients treated at the starting dose, to avoid aggressive escalation early in the trial
 - Don't just report the final MTD estimate, but also the credible interval for it: particularly relevant with incomplete follow-up data
+
+# Outlook
+
+## Learning more
+
+Lots of documentation is available on the `crmPack` website: [crmPack.org](https://crmPack.org/)
+
+It includes:
+
+- 13 vignettes with detailed examples of how to use the package
+  - In particular, the [paper](https://www.crmpack.org/vignettes/getting-started/crmPack_paper/) vignette is a great starting point
+  - Also backfilling cohorts are explained in a dedicated [backfilling](https://www.crmpack.org/vignettes/getting-started/crmPack_backfill/) vignette e.g.
+- Link to the online reference explaining all the functions and classes in the package
+- Contact information for questions and suggestions, as well as a link to the GitHub repository for bug reports and feature requests
+
+## How to contribute on GitHub
+
+- The package's repo is hosted on GitHub at [github.com/openpharma/crmPack](https://github.com/openpharma/crmPack)
+- Contributions are very welcome:
+  - Questions
+  - Bug reports
+  - Feature requests
+  - Code contributions (under the license of the project, i.e. GPL v2 or higher)
+- We will also soon have a contributing guide in the repo with more detailed instructions on how to contribute code, but here are some general guidelines:
+  - Fork the repo for your work
+  - Make your changes and commit them with clear messages
+  - Push to your fork and create a pull request to the main `crmPack` repo
+  - I will review your pull request and provide feedback, and once it's approved I will merge it into the main branch
+
+## Custom JAGS model workflow
+
+It is actually quite straightforward to implement a custom JAGS model in `crmPack`:
+
+1. Define a new S4 class that inherits from `GeneralModel` with `setClass()`
+1. Implement a constructor / initialization function for the new class, which specifies the likelihood and prior distributions in the underlying `GeneralModel` slots:
+   1. The `datamodel` slot should contain the JAGS code for the likelihood
+   1. The `priormodel` slot should contain the JAGS code for the prior distributions
+   1. The `modelspecs` slot is a function that returns required JAGS inputs
+   1. The `init` slot is a function that returns initial values for the MCMC sampling
+   1. The `datanames` slot is a character vector of the names of the data inputs required for the likelihood
+1. Implement `dose()` and `prob()` methods for the new class, which compute the dose and toxicity probability for given model parameters using `setMethod()`
+
+Full examples are available [in the JSS paper](https://www.crmpack.org/vignettes/getting-started/crmPack_paper/#extending-crmpack-functionality) and [in the parallelization vignette](https://www.crmpack.org/vignettes/utilities/crmPack_parallel_computing/#worked-out-example).
 
 ## References
