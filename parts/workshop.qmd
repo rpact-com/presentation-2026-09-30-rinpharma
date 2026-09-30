@@ -41,9 +41,9 @@ Part of this workshop material is based on the `crmPack` training materials deve
 
 ## Today's workshop
 
-- These slides are available at: [TODO](TODO)
+- These slides are available at: [rpact-com.github.io/presentation-2026-09-30-rinpharma](https://rpact-com.github.io/presentation-2026-09-30-rinpharma)
 - Download the R code used in these slides [here](/code/workshop.R)
-- The Posit Cloud workshop can be accessed [here](https://posit.cloud/spaces/824929/content/13012234)
+- The Posit Cloud workshop can be accessed [here](https://posit.cloud/spaces/824929/join?access_code=urCMtZWtUc5NEvxghpYbMk7KuatxXrfprzDJfoID)
 - Any questions please post them in the Zoom chat
 
 # Motivation
