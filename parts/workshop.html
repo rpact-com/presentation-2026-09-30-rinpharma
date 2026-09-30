@@ -266,9 +266,9 @@ Daniel Sabanés Bové (RPACT)
 <section id="todays-workshop" class="slide level2">
 <h2>Today’s workshop</h2>
 <ul>
-<li>These slides are available at: <a href="TODO">TODO</a></li>
+<li>These slides are available at: <a href="https://rpact-com.github.io/presentation-2026-09-30-rinpharma">rpact-com.github.io/presentation-2026-09-30-rinpharma</a></li>
 <li>Download the R code used in these slides <a href="../code/workshop.R">here</a></li>
-<li>The Posit Cloud workshop can be accessed <a href="https://posit.cloud/spaces/824929/content/13012234">here</a></li>
+<li>The Posit Cloud workshop can be accessed <a href="https://posit.cloud/spaces/824929/join?access_code=urCMtZWtUc5NEvxghpYbMk7KuatxXrfprzDJfoID">here</a></li>
 <li>Any questions please post them in the Zoom chat</li>
 </ul>
 </section></section>
@@ -1071,26 +1071,26 @@ Unacceptable
 18   22    1       22 FALSE         0
 19   22    2       21 FALSE        -5
 20   22    3       20 FALSE        -9
-21   24    0       31 FALSE        29
+21   24    0       28 FALSE        17
 22   24    1       24 FALSE         0
 23   24    2       23 FALSE        -4
 24   24    3       22 FALSE        -8
-25   31    0       39 FALSE        26
-26   31    1       30 FALSE        -3
-27   31    2       27 FALSE       -13
-28   31    3       24 FALSE       -23
-29   39    0       71 FALSE        82
-30   39    1       41 FALSE         5
-31   39    2       34 FALSE       -13
-32   39    3       30 FALSE       -23
-33   71    0      141 FALSE        99
-34   71    1       71 FALSE         0
-35   71    2       49 FALSE       -31
-36   71    3       39 FALSE       -45
-37  141    0      188  TRUE        33
-38  141    1      196  TRUE        39
-39  141    2       89  TRUE       -37
-40  141    3       64  TRUE       -55</code></pre>
+25   28    0       36 FALSE        29
+26   28    1       29 FALSE         4
+27   28    2       25 FALSE       -11
+28   28    3       24 FALSE       -14
+29   36    0       51 FALSE        42
+30   36    1       37 FALSE         3
+31   36    2       31 FALSE       -14
+32   36    3       28 FALSE       -22
+33   51    0       88 FALSE        73
+34   51    1       51 FALSE         0
+35   51    2       40 FALSE       -22
+36   51    3       34 FALSE       -33
+37   88    0      173  TRUE        97
+38   88    1       93  TRUE         6
+39   88    2       63  TRUE       -28
+40   88    3       49  TRUE       -44</code></pre>
 </div>
 </div>
 <p>Here it could be also concerning that if we observe 3 DLTs at the starting dose of 5, we still continue with the same dose 5 for the next cohort. The reason here is that the prior is “too confident” that at low doses we have a low DLT probability.</p>
@@ -1113,45 +1113,33 @@ Unacceptable
 <div class="cell-output cell-output-stdout">
 <pre><code>   dose DLTs nextDose  stop increment
 1     5    0       10 FALSE       100
-2     5    1        1 FALSE       -80
+2     5    1        5 FALSE         0
 3     5    2       NA  TRUE        NA
 4     5    3       NA  TRUE        NA
 5    10    0       20 FALSE       100
-6    10    1       15 FALSE        50
+6    10    1       14 FALSE        40
 7    10    2        5 FALSE       -50
 8    10    3       NA  TRUE        NA
-9    20    0       39 FALSE        95
+9    20    0       40 FALSE       100
 10   20    1       30 FALSE        50
-11   20    2       17 FALSE       -15
+11   20    2       15 FALSE       -25
 12   20    3       10 FALSE       -50
-13   39    0       78 FALSE       100
-14   39    1       54 FALSE        38
-15   39    2       30 FALSE       -23
-16   39    3       23 FALSE       -41
-17   78    0      146 FALSE        87
-18   78    1       96 FALSE        23
-19   78    2       62 FALSE       -21
-20   78    3       42 FALSE       -46
-21  146    0      198 FALSE        36
-22  146    1      162 FALSE        11
-23  146    2      110 FALSE       -25
-24  146    3       89 FALSE       -39
-25  198    0      199 FALSE         1
-26  198    1      200 FALSE         1
-27  198    2      183 FALSE        -8
-28  198    3      144 FALSE       -27
-29  199    0      191 FALSE        -4
-30  199    1      200 FALSE         1
-31  199    2      199 FALSE         0
-32  199    3      181 FALSE        -9
-33  191    0      199 FALSE         4
-34  191    1      200 FALSE         5
-35  191    2      200 FALSE         5
-36  191    3      200 FALSE         5
-37  199    0      198  TRUE        -1
-38  199    1      200  TRUE         1
-39  199    2      200  TRUE         1
-40  199    3      200  TRUE         1</code></pre>
+13   40    0       79 FALSE        98
+14   40    1       57 FALSE        42
+15   40    2       32 FALSE       -20
+16   40    3       23 FALSE       -42
+17   79    0      142 FALSE        80
+18   79    1      110 FALSE        39
+19   79    2       61 FALSE       -23
+20   79    3       47 FALSE       -41
+21  142    0      178 FALSE        25
+22  142    1      177 FALSE        25
+23  142    2      113 FALSE       -20
+24  142    3       87 FALSE       -39
+25  178    0      200 FALSE        12
+26  178    1      200 FALSE        12
+27  178    2      163 FALSE        -8
+28  178    3      136 FALSE       -24</code></pre>
 </div>
 </div>
 <img data-src="workshop_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
@@ -1316,11 +1304,11 @@ It: 370, obj value (lsEnd): 0.01526062805 indTrace: 370
 It: 377, obj value (lsEnd): 0.01507283033 indTrace: 377
 It: 395, obj value (lsEnd): 0.01445789659 indTrace: 395
 It: 577, obj value (lsEnd): 0.0127023889 indTrace: 577
-timeSpan = 32.356455 maxTime = 30
+timeSpan = 31.43703 maxTime = 30
 Emini is: 0.0127023889
 xmini are:
 -1.280320232 0.6589842054 1.264422506 0.08107323782 0.8768339596 
-Totally it used 32.356479 secs
+Totally it used 31.437055 secs
 No. of function call is: 11250</code></pre>
 </div>
 </div>
@@ -1558,7 +1546,7 @@ No. of function call is: 11250</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(samples_share<span class="sc">@</span>data<span class="sc">$</span>comp <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5623</code></pre>
+<pre><code>[1] 0.5633</code></pre>
 </div>
 </div>
 </section></section>
