@@ -1063,34 +1063,34 @@ Unacceptable
 10   20    1       20 FALSE         0
 11   20    2       20 FALSE         0
 12   20    3       19 FALSE        -5
-13   21    0       22 FALSE         5
+13   21    0       24 FALSE        14
 14   21    1       21 FALSE         0
 15   21    2       20 FALSE        -5
 16   21    3       20 FALSE        -5
-17   22    0       24 FALSE         9
-18   22    1       22 FALSE         0
-19   22    2       21 FALSE        -5
-20   22    3       20 FALSE        -9
-21   24    0       28 FALSE        17
-22   24    1       24 FALSE         0
-23   24    2       23 FALSE        -4
-24   24    3       22 FALSE        -8
-25   28    0       36 FALSE        29
-26   28    1       29 FALSE         4
-27   28    2       25 FALSE       -11
-28   28    3       24 FALSE       -14
-29   36    0       51 FALSE        42
-30   36    1       37 FALSE         3
-31   36    2       31 FALSE       -14
-32   36    3       28 FALSE       -22
-33   51    0       88 FALSE        73
-34   51    1       51 FALSE         0
-35   51    2       40 FALSE       -22
-36   51    3       34 FALSE       -33
-37   88    0      173  TRUE        97
-38   88    1       93  TRUE         6
-39   88    2       63  TRUE       -28
-40   88    3       49  TRUE       -44</code></pre>
+17   24    0       29 FALSE        21
+18   24    1       23 FALSE        -4
+19   24    2       22 FALSE        -8
+20   24    3       21 FALSE       -12
+21   29    0       41 FALSE        41
+22   29    1       29 FALSE         0
+23   29    2       25 FALSE       -14
+24   29    3       24 FALSE       -17
+25   41    0       67 FALSE        63
+26   41    1       37 FALSE       -10
+27   41    2       34 FALSE       -17
+28   41    3       29 FALSE       -29
+29   67    0      107 FALSE        60
+30   67    1       74 FALSE        10
+31   67    2       48 FALSE       -28
+32   67    3       39 FALSE       -42
+33  107    0      198 FALSE        85
+34  107    1      110 FALSE         3
+35  107    2       77 FALSE       -28
+36  107    3       60 FALSE       -44
+37  198    0      200  TRUE         1
+38  198    1      198  TRUE         0
+39  198    2      130  TRUE       -34
+40  198    3       93  TRUE       -53</code></pre>
 </div>
 </div>
 <p>Here it could be also concerning that if we observe 3 DLTs at the starting dose of 5, we still continue with the same dose 5 for the next cohort. The reason here is that the prior is “too confident” that at low doses we have a low DLT probability.</p>
@@ -1113,33 +1113,33 @@ Unacceptable
 <div class="cell-output cell-output-stdout">
 <pre><code>   dose DLTs nextDose  stop increment
 1     5    0       10 FALSE       100
-2     5    1        5 FALSE         0
+2     5    1        1 FALSE       -80
 3     5    2       NA  TRUE        NA
 4     5    3       NA  TRUE        NA
 5    10    0       20 FALSE       100
 6    10    1       14 FALSE        40
 7    10    2        5 FALSE       -50
 8    10    3       NA  TRUE        NA
-9    20    0       40 FALSE       100
-10   20    1       30 FALSE        50
-11   20    2       15 FALSE       -25
+9    20    0       39 FALSE        95
+10   20    1       29 FALSE        45
+11   20    2       18 FALSE       -10
 12   20    3       10 FALSE       -50
-13   40    0       79 FALSE        98
-14   40    1       57 FALSE        42
-15   40    2       32 FALSE       -20
-16   40    3       23 FALSE       -42
-17   79    0      142 FALSE        80
-18   79    1      110 FALSE        39
-19   79    2       61 FALSE       -23
-20   79    3       47 FALSE       -41
-21  142    0      178 FALSE        25
-22  142    1      177 FALSE        25
-23  142    2      113 FALSE       -20
-24  142    3       87 FALSE       -39
-25  178    0      200 FALSE        12
-26  178    1      200 FALSE        12
-27  178    2      163 FALSE        -8
-28  178    3      136 FALSE       -24</code></pre>
+13   39    0       78 FALSE       100
+14   39    1       53 FALSE        36
+15   39    2       35 FALSE       -10
+16   39    3       21 FALSE       -46
+17   78    0      156 FALSE       100
+18   78    1       88 FALSE        13
+19   78    2       67 FALSE       -14
+20   78    3       46 FALSE       -41
+21  156    0      196 FALSE        26
+22  156    1      196 FALSE        26
+23  156    2      116 FALSE       -26
+24  156    3       92 FALSE       -41
+25  196    0      200 FALSE         2
+26  196    1      200 FALSE         2
+27  196    2      167 FALSE       -15
+28  196    3      146 FALSE       -26</code></pre>
 </div>
 </div>
 <img data-src="workshop_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
@@ -1298,18 +1298,16 @@ Stop reason triggered:
 <span id="cb42-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(<span class="at">max.time =</span> <span class="dv">30</span>) <span class="co"># limit the optimization time here</span></span>
 <span id="cb42-10"><a aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>It: 1, obj value (lsEnd): 0.07142670344 indTrace: 1
-It: 351, obj value (lsEnd): 0.03540073469 indTrace: 351
-It: 370, obj value (lsEnd): 0.01526062805 indTrace: 370
-It: 377, obj value (lsEnd): 0.01507283033 indTrace: 377
-It: 395, obj value (lsEnd): 0.01445789659 indTrace: 395
-It: 577, obj value (lsEnd): 0.0127023889 indTrace: 577
-timeSpan = 31.43703 maxTime = 30
-Emini is: 0.0127023889
+<pre><code>It: 1, obj value (lsEnd): 0.06732883077 indTrace: 1
+It: 214, obj value (lsEnd): 0.01474025243 indTrace: 214
+It: 238, obj value (lsEnd): 0.01416193999 indTrace: 238
+It: 460, obj value (lsEnd): 0.01295269405 indTrace: 460
+timeSpan = 30.002291 maxTime = 30
+Emini is: 0.01295269405
 xmini are:
--1.280320232 0.6589842054 1.264422506 0.08107323782 0.8768339596 
-Totally it used 31.437055 secs
-No. of function call is: 11250</code></pre>
+-1.280026342 0.6618977116 1.254935046 0.1500300078 0.5608228116 
+Totally it used 30.002328 secs
+No. of function call is: 10317</code></pre>
 </div>
 </div>
 </section>
@@ -1353,7 +1351,7 @@ No. of function call is: 11250</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a>min_result<span class="sc">$</span>model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <p>A logistic log normal model will describe the relationship between dose and toxicity: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mi>o</mi><mi>x</mi><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>X</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="prefix">|</mo><mi>θ</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><msup><mi>e</mi><mrow><mi>α</mi><mo>+</mo><mi>β</mi><mo>⋅</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mi>/</mi><msub><mi>d</mi><mrow><mi>r</mi><mi>e</mi><mi>f</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow></msup><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mi>α</mi><mo>+</mo><mi>β</mi><mo>⋅</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mi>/</mi><msub><mi>d</mi><mrow><mi>r</mi><mi>e</mi><mi>f</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex"> p(Tox | d) = f(X = 1 | \theta, d) = \frac{e^{\alpha + \beta \cdot log(d/d_{ref})}}{1 + e^{\alpha + \beta \cdot log(d/d_{ref})}} </annotation></semantics></math>where d<sub>ref</sub> denotes a reference dose.</p>
-<p>The prior for θ is given by<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜽</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>α</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>∼</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>1.28</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.66</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1.60</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.09</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.09</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> \boldsymbol\theta = \begin{bmatrix}\alpha \\ log(\beta)\end{bmatrix}\sim N \left(\begin{bmatrix}-1.28 \\  0.66\end{bmatrix} , \begin{bmatrix} 1.60 &amp;  0.09 \\ 0.09 &amp;  0.01\end{bmatrix} \right) </annotation></semantics></math></p>
+<p>The prior for θ is given by<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜽</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>α</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>∼</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>1.28</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.66</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1.57</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.11</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.11</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.02</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> \boldsymbol\theta = \begin{bmatrix}\alpha \\ log(\beta)\end{bmatrix}\sim N \left(\begin{bmatrix}-1.28 \\  0.66\end{bmatrix} , \begin{bmatrix} 1.57 &amp;  0.11 \\ 0.11 &amp;  0.02\end{bmatrix} \right) </annotation></semantics></math></p>
 <p>The reference dose will be 100.00.</p>
 </div>
 </div>
@@ -1546,7 +1544,7 @@ No. of function call is: 11250</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(samples_share<span class="sc">@</span>data<span class="sc">$</span>comp <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5633</code></pre>
+<pre><code>[1] 0.5573</code></pre>
 </div>
 </div>
 </section></section>
@@ -1805,7 +1803,7 @@ Stop reason triggered:
 
 </div><div class="column" style="width:48%;">
 <ul>
-<li>Make a <code>crmPack</code> <em>installation qualification</em> on each Roche computer (coming in 2026)</li>
+<li>Make a <code>crmPack</code> <em>installation qualification</em> on each company computer (coming in 2026)</li>
 <li>Determine the direction of <code>crmPack</code> <em>future development activities</em> (many new features in recent release!)</li>
 <li>Optional support for health authority interactions</li>
 <li>Optional consultation to support specific clinical trials</li>
