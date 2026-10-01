@@ -950,7 +950,7 @@ Full examples are available [in the JSS paper](https://www.crmpack.org/vignettes
 :::
 
 ::: {.column width="48%"}
--   Make a `crmPack` *installation qualification* on each Roche computer (coming in 2026)
+-   Make a `crmPack` *installation qualification* on each company computer (coming in 2026)
 -   Determine the direction of `crmPack` *future development activities* (many new features in recent release!)
 -   Optional support for health authority interactions
 -   Optional consultation to support specific clinical trials
